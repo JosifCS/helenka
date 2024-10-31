@@ -3,9 +3,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/modules/utils";
 
-//
-//
-//
 export const buttonVariants = cva(String.Empty, {
   variants: {
     variant: {
