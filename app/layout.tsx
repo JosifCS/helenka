@@ -3,8 +3,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ReactNode } from "react";
 
-// inicializace konstanty
+// inicializace konstant
 String.Empty = "";
+String.CR = "\r";
+String.LF = "\n";
+String.CRLF = "\r\n";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
