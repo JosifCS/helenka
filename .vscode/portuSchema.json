@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Schéma pro roční daňový výpis z Portu.",
+  "title": "PortuSchema",
+  "description": "Schéma pro roční daňový výpis z Portu",
   "type": "object",
   "definitions": {
     "Table": {
@@ -23,6 +24,7 @@
               },
               "type": {
                 "type": "string",
+                "enum": ["string", "number", "date", "range"],
                 "description": "Typ hodnoty"
               },
               "name": {
@@ -34,11 +36,13 @@
                 "description": "Index sloupce tabulky"
               }
             },
-            "required": ["key", "type", "name", "index"]
+            "required": ["key", "type", "name", "index"],
+            "additionalProperties": false
           }
         }
       },
-      "required": ["name", "columns"]
+      "required": ["name", "columns"],
+      "additionalProperties": false
     }
   },
   "properties": {
@@ -54,6 +58,7 @@
           },
           "type": {
             "type": "string",
+            "enum": ["string", "number", "date", "range"],
             "description": "Typ hodnoty"
           },
           "name": {
@@ -61,7 +66,8 @@
             "description": "Název hodnoty v ooriginálním souboru"
           }
         },
-        "required": ["key", "type", "name"]
+        "required": ["key", "type", "name"],
+        "additionalProperties": false
       }
     },
     "usdIncomes": {
@@ -103,5 +109,6 @@
     "currencyHedging",
     "fees",
     "dividends"
-  ]
+  ],
+  "additionalProperties": false
 }
