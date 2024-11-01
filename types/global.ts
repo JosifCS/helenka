@@ -1,11 +1,11 @@
 export type DateRange = { from: Date; to: Date };
 
 export type RawTableDefinition = {
-  value: string;
+  name: string;
   columns: {
     key: string;
     type: string;
-    column: number;
-    value: string;
+    index: number;
+    name: string;
   }[];
 };

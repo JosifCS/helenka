@@ -1,0 +1,408 @@
+{
+  "totals": [
+    {
+      "key": "paperIncome",
+      "type": "number",
+      "name": "Celkem zdanitelné příjmy z prodeje cenných papírů"
+    },
+    {
+      "key": "paperIncomeExcluding",
+      "type": "number",
+      "name": "Celkem zdanitelné příjmy z prodeje cenných papírů (mimo osvobozených na základě časového testu)"
+    },
+    {
+      "key": "papertotalExpenses",
+      "type": "number",
+      "name": "Celkem výdaje spojené s pořízením a držbou cenných papírů (mimo osvobozených na základě časového testu)"
+    },
+    {
+      "key": "taxBaseBase10",
+      "type": "number",
+      "name": "Dílčí základ daně dle §10 zákona"
+    },
+    {
+      "key": "currencyIncome",
+      "type": "number",
+      "name": "Příjmy z měnového zajištění"
+    },
+    {
+      "key": "currencyexpenses",
+      "type": "number",
+      "name": "Výdaje z měnového zajištění"
+    },
+    {
+      "key": "currencyTaxBase",
+      "type": "number",
+      "name": "Dílčí základ daně"
+    },
+    {
+      "key": "grossDividends",
+      "type": "number",
+      "name": "Hrubá hodnota připsaných dividend"
+    },
+    {
+      "key": "dividendsTax",
+      "type": "number",
+      "name": "Hodnota srážkové daně k zápočtu"
+    },
+    {
+      "key": "dividendsPaidTaxUsd",
+      "type": "number",
+      "name": "Celkem hodnota zaplacené daně ve státě zdroje příjmu"
+    },
+    {
+      "key": "dividendsPaidTax",
+      "type": "number",
+      "name": "Celkem hodnota zaplacené daně ve státě zdroje příjmu (v CZK)"
+    },
+    {
+      "key": "grossInterest",
+      "type": "number",
+      "name": "Celkem hrubá hodnota připsaných úroků"
+    },
+    {
+      "key": "taxBases7to10",
+      "type": "number",
+      "name": "Součet dílčích základů daně §7-10 zákona"
+    }
+  ],
+  "usdIncomes": {
+    "name": "Příjmy v USD",
+    "columns": [
+      { "key": "id", "type": "number", "index": 0, "name": "#" },
+      {
+        "key": "dates",
+        "type": "range",
+        "index": 1,
+        "name": "Datum prodeje/nákupu"
+      },
+      {
+        "key": "purchaseDate",
+        "type": "date",
+        "index": 2,
+        "name": "Datum nakupu"
+      },
+      { "key": "isin", "type": "string", "index": 3, "name": "ISIN" },
+      {
+        "key": "instrument",
+        "type": "string",
+        "index": 4,
+        "name": "Instrument"
+      },
+      {
+        "key": "unitsCount",
+        "type": "number",
+        "index": 5,
+        "name": "Počet prodaných kusů"
+      },
+      {
+        "key": "purchase",
+        "type": "number",
+        "index": 6,
+        "name": "Nákupní cena* (v USD)"
+      },
+      {
+        "key": "sell",
+        "type": "number",
+        "index": 7,
+        "name": "Prodejní cena (v USD)"
+      },
+      {
+        "key": "purchaseExchange",
+        "type": "number",
+        "index": 8,
+        "name": "Kurz USD/CZK - při nákupu"
+      },
+      {
+        "key": "sellExchange",
+        "type": "number",
+        "index": 9,
+        "name": "Kurz USD/CZK - při prodeji"
+      },
+      {
+        "key": "incomeCzk",
+        "type": "number",
+        "index": 10,
+        "name": "Příjem z prodeje (v CZK)"
+      },
+      {
+        "key": "expensesCzk",
+        "type": "number",
+        "index": 11,
+        "name": "Výdaj na pořízení a prodej (v CZK)"
+      },
+      {
+        "key": "profitCzk",
+        "type": "number",
+        "index": 12,
+        "name": "Zisk/ztráta** (v CZK)"
+      },
+      {
+        "key": "timeTest",
+        "type": "string",
+        "index": 13,
+        "name": "Splněn časový test?"
+      }
+    ]
+  },
+  "eurIncomes": {
+    "name": "Příjmy v EUR",
+    "columns": [
+      { "key": "id", "type": "number", "index": 0, "name": "#" },
+      {
+        "key": "dates",
+        "type": "range",
+        "index": 1,
+        "name": "Datum prodeje/nákupu"
+      },
+      {
+        "key": "purchaseDate",
+        "type": "date",
+        "index": 2,
+        "name": "Datum nakupu"
+      },
+      { "key": "isin", "type": "string", "index": 3, "name": "ISIN" },
+      {
+        "key": "instrument",
+        "type": "string",
+        "index": 4,
+        "name": "Instrument"
+      },
+      {
+        "key": "unitsCount",
+        "type": "number",
+        "index": 5,
+        "name": "Počet prodaných kusů"
+      },
+      {
+        "key": "purchase",
+        "type": "number",
+        "index": 6,
+        "name": "Nákupní cena* (v EUR)"
+      },
+      {
+        "key": "sell",
+        "type": "number",
+        "index": 7,
+        "name": "Prodejní cena (v EUR)"
+      },
+      {
+        "key": "purchaseExchange",
+        "type": "number",
+        "index": 8,
+        "name": "Kurz EUR/CZK - při nákupu"
+      },
+      {
+        "key": "sellExchange",
+        "type": "number",
+        "index": 9,
+        "name": "Kurz EUR/CZK - při prodeji"
+      },
+      {
+        "key": "incomeCzk",
+        "type": "number",
+        "index": 10,
+        "name": "Příjem z prodeje (v CZK)"
+      },
+      {
+        "key": "expensesCzk",
+        "type": "number",
+        "index": 11,
+        "name": "Výdaj na pořízení a prodej (v CZK)"
+      },
+      {
+        "key": "profitCzk",
+        "type": "number",
+        "index": 12,
+        "name": "Zisk/ztráta** (v CZK)"
+      },
+      {
+        "key": "timeTest",
+        "type": "string",
+        "index": 13,
+        "name": "Splněn časový test?"
+      }
+    ]
+  },
+  "czkIncomes": {
+    "name": "Příjmy v CZK",
+    "columns": [
+      { "key": "id", "type": "number", "index": 0, "name": "#" },
+      {
+        "key": "dates",
+        "type": "range",
+        "index": 1,
+        "name": "Datum prodeje/nákupu"
+      },
+      {
+        "key": "purchaseDate",
+        "type": "number",
+        "index": 2,
+        "name": "Datum nakupu"
+      },
+      { "key": "isin", "type": "string", "index": 3, "name": "ISIN" },
+      {
+        "key": "instrument",
+        "type": "string",
+        "index": 4,
+        "name": "Instrument"
+      },
+      {
+        "key": "unitsCount",
+        "type": "number",
+        "index": 5,
+        "name": "Počet prodaných kusů"
+      },
+      {
+        "key": "purchase",
+        "type": "number",
+        "index": 6,
+        "name": "Nákupní cena* (v CZK)"
+      },
+      {
+        "key": "sell",
+        "type": "number",
+        "index": 7,
+        "name": "Prodejní cena (v CZK)"
+      },
+      {
+        "key": "incomeCzk",
+        "type": "number",
+        "index": 8,
+        "name": "Příjem z prodeje (v CZK)"
+      },
+      {
+        "key": "expensesCzk",
+        "type": "number",
+        "index": 9,
+        "name": "Výdaj na pořízení a prodej (v CZK)"
+      },
+      {
+        "key": "profitCzk",
+        "type": "number",
+        "index": 10,
+        "name": "Zisk/ztráta (v CZK)"
+      },
+      {
+        "key": "timeTest",
+        "type": "string",
+        "index": 11,
+        "name": "Splněn časový test?"
+      }
+    ]
+  },
+  "currencyHedging": {
+    "name": "b. Příjmy/výdaje na měnové zajištění",
+    "columns": [
+      { "key": "id", "type": "number", "index": 0, "name": "#" },
+      {
+        "key": "instrument",
+        "type": "string",
+        "index": 1,
+        "name": "Instrument"
+      },
+      { "key": "position", "type": "number", "index": 2, "name": "Pozice" },
+      {
+        "key": "appointmentDate",
+        "type": "date",
+        "index": 3,
+        "name": "Datum sjednání"
+      },
+      {
+        "key": "dueDate",
+        "type": "date",
+        "index": 4,
+        "name": "Datum splatnosti"
+      },
+      {
+        "key": "appointmentCourse",
+        "type": "number",
+        "index": 5,
+        "name": "Kurz při sjednání"
+      },
+      {
+        "key": "dueCourse",
+        "type": "number",
+        "index": 6,
+        "name": "Kurz pro den splatnosti"
+      },
+      {
+        "key": "income",
+        "type": "number",
+        "index": 7,
+        "name": "Příjem/výdaj (v CZK)"
+      }
+    ]
+  },
+  "fees": {
+    "name": " Naúčtované poplatky v CZK",
+    "columns": [
+      { "key": "id", "type": "number", "index": 0, "name": "#" },
+      { "key": "date", "type": "date", "index": 1, "name": "Datum" },
+      { "key": "type", "type": "string", "index": 2, "name": "Typ poplatku" },
+      { "key": "value", "type": "number", "index": 3, "name": "Hodnota v CZK" }
+    ]
+  },
+  "dividends": {
+    "name": "Připsané dividendy v USD",
+    "columns": [
+      { "key": "id", "type": "number", "index": 0, "name": "#" },
+      { "key": "date", "type": "date", "index": 1, "name": "Datum" },
+      { "key": "isin", "type": "string", "index": 2, "name": "ISIN" },
+      {
+        "key": "instrument",
+        "type": "string",
+        "index": 3,
+        "name": "Instrument"
+      },
+      {
+        "key": "grossValue",
+        "type": "number",
+        "index": 4,
+        "name": "Hrubá hodnota (v USD)"
+      },
+      {
+        "key": "course",
+        "type": "number",
+        "index": 5,
+        "name": "Kurz USD/CZK"
+      },
+      {
+        "key": "grossValueCzk",
+        "type": "number",
+        "index": 6,
+        "name": "Hrubá hodnota* (v CZK)"
+      },
+      {
+        "key": "sourceCountryTax",
+        "type": "number",
+        "index": 7,
+        "name": "Sazba SD ve státě zdroje příjmu"
+      },
+      {
+        "key": "taxPercent",
+        "type": "number",
+        "index": 8,
+        "name": "Sazba SD dle SZDZ"
+      },
+      {
+        "key": "taxUsd",
+        "type": "number",
+        "index": 9,
+        "name": "Hodnota sražené daně ve státě zdroje (v USD)"
+      },
+      {
+        "key": "taxCzk",
+        "type": "number",
+        "index": 10,
+        "name": "Hodnota sražené daně ve státě zdroje (v CZK)"
+      },
+      {
+        "key": "taxCounted",
+        "type": "number",
+        "index": 11,
+        "name": "Hodnota daně k zápočtu (v CZK)"
+      }
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 import { PortuAnnualReport, PortuTotals } from "@/types/portuParser";
-import dictionary from "@/dictionaries/portuReport2023.json";
+import dictionary from "@/dictionaries/report2023.portu.json";
 import { RawTableDefinition } from "@/types/global";
 
 export const portuParser = async (csvFile: File) => {
@@ -33,11 +33,11 @@ const parseTable = (
   rawGrid: string[][],
   definition: RawTableDefinition
 ): any => {
-  const firstIndex = rawGrid.findIndex((x) => x.at(0) == definition.value);
+  const firstIndex = rawGrid.findIndex((x) => x.at(0) == definition.name);
 
   if (firstIndex == -1)
     throw Error(
-      `Při pokusu o parsování tabulky nebla tabulka nelazena podle názvu. ${definition.value}`
+      `Při pokusu o parsování tabulky nebla tabulka nelazena podle názvu. ${definition.name}`
     );
 
   const lastIndex =
@@ -46,7 +46,7 @@ const parseTable = (
 
   if (lastIndex == -1)
     throw Error(
-      `Při pokusu o parsování tabulky nebl nalezen konec tabulky ${definition.value}`
+      `Při pokusu o parsování tabulky nebl nalezen konec tabulky ${definition.name}`
     );
 
   /** První řádek je název tabulky a druhý řádek jsou názvy sloupců. */
@@ -68,9 +68,9 @@ const checkTableColumns = (
   definition: RawTableDefinition
 ) => {
   definition.columns.forEach((def) => {
-    if (dataRow[def.column] != def.value)
+    if (dataRow[def.index] != def.name)
       throw Error(
-        `Při kontrole sloupců tabulky ${definition.value} došlo k chybě. Sloupec číslo ${def.column} byl učekáván s názvem ${def.value} ale je s názvem ${dataRow[def.column]}.`
+        `Při kontrole sloupců tabulky ${definition.name} došlo k chybě. Sloupec číslo ${def.index} byl učekáván s názvem ${def.name} ale je s názvem ${dataRow[def.index]}.`
       );
   });
 };
@@ -80,13 +80,13 @@ const parseTableRow = (
   definitions: {
     key: string;
     type: string;
-    column: number;
+    index: number;
   }[]
 ) => {
   const row: any = {};
 
   definitions.forEach((def) => {
-    row[def.key] = parseValue(dataRow[def.column], def.type);
+    row[def.key] = parseValue(dataRow[def.index], def.type);
   });
   return row;
 };
@@ -101,13 +101,13 @@ const getRowValue = (
   definition: {
     key: string;
     type: string;
-    value: string;
+    name: string;
   },
   rawGrid: string[][]
 ) => {
-  const value = rawGrid.find((x) => x[0] == definition.value)?.at(1);
+  const value = rawGrid.find((x) => x[0] == definition.name)?.at(1);
   if (value == undefined)
-    throw Error(`Portu výpis neobsahuje řádek s názvem ${definition.value}`);
+    throw Error(`Portu výpis neobsahuje řádek s názvem ${definition.name}`);
 
   return parseValue(value, definition.type);
 };
