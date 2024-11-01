@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schéma pro roční daňový výpis z Portu.",
+  "type": "object",
+  "definitions": {
+    "Table": {
+      "type": "object",
+      "description": "Definice tabulky která má název a sloupce.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Název tabulky"
+        },
+        "columns": {
+          "type": "array",
+          "description": "Sloupce tabulky",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Název property výsledného objektu"
+              },
+              "type": {
+                "type": "string",
+                "description": "Typ hodnoty"
+              },
+              "name": {
+                "type": "string",
+                "description": "Název hodnoty v originálním souboru"
+              },
+              "index": {
+                "type": "number",
+                "description": "Index sloupce tabulky"
+              }
+            },
+            "required": ["key", "type", "name", "index"]
+          }
+        }
+      },
+      "required": ["name", "columns"]
+    }
+  },
+  "properties": {
+    "totals": {
+      "type": "array",
+      "description": "Celkové vypočítané hodnoty",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Název property výsledného objektu"
+          },
+          "type": {
+            "type": "string",
+            "description": "Typ hodnoty"
+          },
+          "name": {
+            "type": "string",
+            "description": "Název hodnoty v ooriginálním souboru"
+          }
+        },
+        "required": ["key", "type", "name"]
+      }
+    },
+    "usdIncomes": {
+      "type": "object",
+      "description": "Tabulka s příjmy v Dolarech",
+      "$ref": "#/definitions/Table"
+    },
+    "eurIncomes": {
+      "type": "object",
+      "description": "Tabulka s příjmy v Eurech",
+      "$ref": "#/definitions/Table"
+    },
+    "czkIncomes": {
+      "type": "object",
+      "description": "Tabulka s příjmy v Korunách",
+      "$ref": "#/definitions/Table"
+    },
+    "currencyHedging": {
+      "type": "object",
+      "description": "Tabulka s příjmy z měnového zajištění",
+      "$ref": "#/definitions/Table"
+    },
+    "fees": {
+      "type": "object",
+      "description": "Tabulka s poplatky",
+      "$ref": "#/definitions/Table"
+    },
+    "dividends": {
+      "type": "object",
+      "description": "Tabulka s příjmy z divident",
+      "$ref": "#/definitions/Table"
+    }
+  },
+  "required": [
+    "totals",
+    "usdIncomes",
+    "eurIncomes",
+    "czkIncomes",
+    "currencyHedging",
+    "fees",
+    "dividends"
+  ]
+}
