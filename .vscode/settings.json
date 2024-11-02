@@ -1,14 +1,22 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "[json]": {
-    "editor.formatOnSave": true
-  },
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"editor.tabSize": 4, // Nastaví šířku tabulátoru na 4 mezery v editoru
+	"editor.insertSpaces": false, // Používá tabulátory místo mezer
 
-  "json.schemas": [
-    {
-      "fileMatch": ["/dictionaries/*.portu.json"],
-      "url": "/.vscode/portuSchema.json"
-    }
-  ]
+	"explorer.confirmDelete": false,
+
+	"prettier.tabWidth": 4, // Nastaví šířku tabulátoru na 4 pro Prettier
+	"prettier.useTabs": true, // Používá tabulátory místo mezer pro Prettier
+
+	"[json]": {
+		"editor.formatOnSave": true
+	},
+
+	"json.schemas": [
+		{
+			"fileMatch": ["/dictionaries/*.portu.json"],
+			"url": "/.vscode/portuSchema.json"
+		}
+	]
 }
