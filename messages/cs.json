@@ -1,0 +1,9 @@
+{
+	"Components": {
+		"TopMenu": {
+			"settings": "Nastavení",
+			"about": "O Helence",
+			"locale": "Jazyk"
+		}
+	}
+}

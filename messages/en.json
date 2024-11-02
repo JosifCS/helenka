@@ -1,0 +1,9 @@
+{
+	"Components": {
+		"TopMenu": {
+			"settings": "Settings",
+			"about": "About Helenka",
+			"locale": "Language"
+		}
+	}
+}

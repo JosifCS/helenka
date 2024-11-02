@@ -1,13 +1,13 @@
 {
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.formatOnSave": true,
-	"editor.tabSize": 4, // Nastaví šířku tabulátoru na 4 mezery v editoru
-	"editor.insertSpaces": false, // Používá tabulátory místo mezer
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
 
 	"explorer.confirmDelete": false,
 
-	"prettier.tabWidth": 4, // Nastaví šířku tabulátoru na 4 pro Prettier
-	"prettier.useTabs": true, // Používá tabulátory místo mezer pro Prettier
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
 
 	"[json]": {
 		"editor.formatOnSave": true
@@ -18,5 +18,18 @@
 			"fileMatch": ["/dictionaries/*.portu.json"],
 			"url": "/.vscode/portuSchema.json"
 		}
-	]
+	],
+
+	"i18n-ally.keystyle": "nested",
+	"i18n-ally.dirStructure": "file",
+	"i18n-ally.enabledFrameworks": ["next-intl"],
+	"i18n-ally.translate.engines": ["google"],
+	"i18n-ally.translate.google.apiKey": "AIzaSyB9qzswbiOa4hq3HjpGRc4PoVxmYF2doGo",
+	"i18n-ally.localesPaths": "messages",
+	"i18n-ally.sourceLanguage": "cs",
+	"i18n-ally.editor.preferEditor": true,
+	"i18n-ally.tabStyle": "tab",
+	"i18n-ally.annotationInPlace": true,
+	"i18n-ally.displayLanguage": "cs",
+	"i18n-ally.extract.autoDetect": false
 }

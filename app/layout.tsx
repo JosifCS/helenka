@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { TopMenu } from "@/components/top-menu";
+import { getLocale } from "next-intl/server";
 
 // inicializace konstant
 String.Empty = "";
@@ -26,13 +27,15 @@ export const metadata: Metadata = {
 		"Hospodářská evidence likvidity, evidence nákladů a kontrola aktiv",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const locale = await getLocale();
+
 	return (
-		<html lang="en">
+		<html lang={locale}>
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
