@@ -1,6 +1,6 @@
-import { uploadPortu } from "@/actions/uploadPortu";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { uploadPortu } from "@/actions/uploadPortu"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 
 export default function Page() {
 	return (
@@ -17,5 +17,5 @@ export default function Page() {
 				<Button variant={"link"}>Learn</Button>
 			</footer>
 		</div>
-	);
+	)
 }

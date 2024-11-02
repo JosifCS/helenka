@@ -1,5 +1,5 @@
-import { setLocale } from "@/actions/setLocale";
-import { LocaleSelect } from "./locale-select";
+import { setLocale } from "@/actions/setLocale"
+import { LocaleSelect } from "./locale-select"
 import {
 	Menubar,
 	MenubarContent,
@@ -9,11 +9,11 @@ import {
 	MenubarSub,
 	MenubarSubTrigger,
 	MenubarTrigger,
-} from "./ui/menubar";
-import { useTranslations } from "next-intl";
+} from "./ui/menubar"
+import { useTranslations } from "next-intl"
 
 export function TopMenu() {
-	const t = useTranslations("Components.TopMenu");
+	const t = useTranslations("Components.TopMenu")
 	return (
 		<Menubar className="rounded-none border-b border-none px-2 lg:px-4">
 			<MenubarMenu>
@@ -29,5 +29,5 @@ export function TopMenu() {
 				</MenubarContent>
 			</MenubarMenu>
 		</Menubar>
-	);
+	)
 }
