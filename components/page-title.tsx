@@ -1,15 +1,20 @@
+import { HTMLAttributes } from "react"
 import { Separator } from "./ui/separator"
+
+type PageTitleProps = HTMLAttributes<HTMLDivElement> & {
+	title: string
+	description: string
+}
 
 export function PageTitle({
 	description,
 	title,
-}: {
-	title: string
-	description: string
-}) {
+	children,
+	...props
+}: PageTitleProps) {
 	return (
 		<>
-			<div className="flex items-center justify-between">
+			<div className="flex items-center justify-between" {...props}>
 				<div className="space-y-1">
 					<h2 className="text-2xl font-semibold tracking-tight">
 						{title}
@@ -18,6 +23,7 @@ export function PageTitle({
 						{description}
 					</p>
 				</div>
+				<div>{children}</div>
 			</div>
 			<Separator className="my-4" />
 		</>
