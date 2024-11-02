@@ -25,7 +25,8 @@
 		"Import": {
 			"description": "Import ročních výkazů.",
 			"title": "Import"
-		}
+		},
+		"newImport": "Nový import"
 	},
 	"Index": {
 		"title": "Helenka",

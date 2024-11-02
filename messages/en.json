@@ -25,7 +25,8 @@
 		"Import": {
 			"description": "Import of annual reports.",
 			"title": "Import"
-		}
+		},
+		"newImport": "New import"
 	},
 	"Index": {
 		"title": "Helenka",
