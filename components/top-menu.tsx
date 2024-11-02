@@ -47,7 +47,7 @@ export function TopMenu() {
 				</MenubarContent>
 			</MenubarMenu>
 			<MenubarMenu>
-				<MenubarTrigger asChild>{t("about")}</MenubarTrigger>
+				<MenubarTrigger>{t("about")}</MenubarTrigger>
 				<MenubarContent>
 					<MenubarItem asChild>
 						<Link href="/settings">{t("settings")}</Link>
