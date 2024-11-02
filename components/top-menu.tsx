@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl"
 export function TopMenu() {
 	const t = useTranslations("Components.TopMenu")
 	return (
-		<Menubar className="rounded-none border-b border-none px-2 lg:px-4">
+		<Menubar className="rounded-none border-b  px-2 lg:px-4 fixed top-0 left-0 right-0">
 			<MenubarMenu>
 				<MenubarTrigger className="font-bold">Helenka</MenubarTrigger>
 				<MenubarContent>

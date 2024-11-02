@@ -40,7 +40,9 @@ export default async function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				<TopMenu />
-				<main className="border-t">{children}</main>
+				<div className="mt-10 bg-background h-full px-4 py-6 lg:px-8">
+					{children}
+				</div>
 			</body>
 		</html>
 	)
