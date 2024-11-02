@@ -2,8 +2,33 @@
 	"Components": {
 		"TopMenu": {
 			"settings": "Nastavení",
-			"about": "O Helence",
-			"locale": "Jazyk"
+			"locale": "Jazyk",
+			"import": "Importovat",
+			"stored": "Uložené",
+			"assemblies": "Sestavy",
+			"newAssembly": "Nová sestava",
+			"about": "O stránce",
+			"reports": "Výkazy"
 		}
+	},
+	"Assemblies": {
+		"title": "Sestavy",
+		"description": "Kombinace výsledku více ročních výkazů.",
+		"New": {
+			"title": "Nová sestava",
+			"description": "Vytvoření nové sestavy z výce rořních výkazů."
+		}
+	},
+	"Reports": {
+		"title": "Výkazy",
+		"description": "Roční výkazy z různách platforem.",
+		"Import": {
+			"description": "Import ročních výkazů.",
+			"title": "Import"
+		}
+	},
+	"Index": {
+		"title": "Helenka",
+		"description": "Hospodářská evidence likvidity, evidence nákladů a kontrola aktiv"
 	}
 }

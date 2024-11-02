@@ -2,8 +2,33 @@
 	"Components": {
 		"TopMenu": {
 			"settings": "Settings",
-			"about": "About Helenka",
-			"locale": "Language"
+			"locale": "Language",
+			"import": "Import",
+			"stored": "Saved",
+			"assemblies": "Assemblies",
+			"newAssembly": "New assembly",
+			"about": "About",
+			"reports": "Reports"
 		}
+	},
+	"Assemblies": {
+		"title": "Assemblies",
+		"description": "Combination of the result of several annual reports.",
+		"New": {
+			"title": "New assembly",
+			"description": "Creating a new report from multiple reports."
+		}
+	},
+	"Reports": {
+		"title": "Reports",
+		"description": "Annual reports from various platforms.",
+		"Import": {
+			"description": "Import of annual reports.",
+			"title": "Import"
+		}
+	},
+	"Index": {
+		"title": "Helenka",
+		"description": "Economic records of liquidity, records of costs and control of assets"
 	}
 }
