@@ -1,8 +1,12 @@
-"use server";
+"use server"
 
-import { cookies } from "next/headers";
+import { cookies } from "next/headers"
 
-export async function setLocale(locale: "en" | "cs") {
-	const cs = await cookies();
-	cs.set("locale", locale);
+/**
+ * Změna jazyka stránky.
+ * @param locale "cs" nebo "en".
+ */
+export async function setLocale(locale: string) {
+	const cs = await cookies()
+	cs.set("locale", locale)
 }

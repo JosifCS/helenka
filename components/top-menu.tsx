@@ -1,19 +1,22 @@
 import { setLocale } from "@/actions/setLocale"
-import { LocaleSelect } from "./locale-select"
 import {
 	Menubar,
 	MenubarContent,
 	MenubarItem,
 	MenubarMenu,
+	MenubarRadioGroup,
+	MenubarRadioItem,
 	MenubarSeparator,
 	MenubarSub,
+	MenubarSubContent,
 	MenubarSubTrigger,
 	MenubarTrigger,
 } from "./ui/menubar"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import Link from "next/link"
 
 export function TopMenu() {
+	const locale = useLocale()
 	const t = useTranslations("Components.TopMenu")
 	return (
 		<Menubar className="rounded-none border-b  px-2 lg:px-4 fixed top-0 left-0 right-0">
@@ -54,7 +57,19 @@ export function TopMenu() {
 					</MenubarItem>
 					<MenubarSub>
 						<MenubarSubTrigger>{t("locale")}</MenubarSubTrigger>
-						<LocaleSelect onChange={setLocale} />
+						<MenubarSubContent>
+							<MenubarRadioGroup
+								value={locale}
+								onValueChange={setLocale}
+							>
+								<MenubarRadioItem value="cs">
+									Česky
+								</MenubarRadioItem>
+								<MenubarRadioItem value="en">
+									English
+								</MenubarRadioItem>
+							</MenubarRadioGroup>
+						</MenubarSubContent>
 					</MenubarSub>
 				</MenubarContent>
 			</MenubarMenu>
