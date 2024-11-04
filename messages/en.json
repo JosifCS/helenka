@@ -24,7 +24,12 @@
 		"description": "Annual reports from various platforms.",
 		"Import": {
 			"description": "Import of annual reports.",
-			"title": "Import"
+			"title": "Import",
+			"Brokers": {
+				"portu": "Not just for novice investors.",
+				"etoro": "Invest in over 6,000 assets.",
+				"xtb": "Investments in world markets."
+			}
 		},
 		"newImport": "New import"
 	},

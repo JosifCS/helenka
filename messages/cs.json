@@ -24,7 +24,12 @@
 		"description": "Roční výkazy z různách platforem.",
 		"Import": {
 			"description": "Import ročních výkazů.",
-			"title": "Import"
+			"title": "Import",
+			"Brokers": {
+				"portu": "Nejen pro začínající investory.",
+				"etoro": "Investice do více než 6000 aktiv.",
+				"xtb": "Investice na světových trzích."
+			}
 		},
 		"newImport": "Nový import"
 	},
