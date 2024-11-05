@@ -3,12 +3,11 @@
 		"TopMenu": {
 			"settings": "Settings",
 			"locale": "Language",
-			"import": "Import",
-			"stored": "Saved",
-			"assemblies": "Assemblies",
+			"import": "Import report...",
 			"newAssembly": "New assembly",
 			"about": "About",
-			"reports": "Reports"
+			"file": "File",
+			"help": "Help"
 		}
 	},
 	"Assemblies": {

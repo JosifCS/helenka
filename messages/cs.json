@@ -3,12 +3,11 @@
 		"TopMenu": {
 			"settings": "Nastavení",
 			"locale": "Jazyk",
-			"import": "Importovat",
-			"stored": "Uložené",
-			"assemblies": "Sestavy",
+			"import": "Importovat výkaz...",
 			"newAssembly": "Nová sestava",
 			"about": "O stránce",
-			"reports": "Výkazy"
+			"file": "Soubor",
+			"help": "Nápověda"
 		}
 	},
 	"Assemblies": {

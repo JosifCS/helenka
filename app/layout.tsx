@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import "./globals.css"
-import { TopMenu } from "@/components/top-menu"
 import { getLocale } from "next-intl/server"
 import { ReactNode } from "react"
 
@@ -40,10 +39,7 @@ export default async function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<TopMenu />
-				<div className="mt-10 bg-background h-full px-4 py-6 lg:px-8">
-					{children}
-				</div>
+				{children}
 			</body>
 		</html>
 	)

@@ -26,32 +26,22 @@ export function TopMenu() {
 				</MenubarTrigger>
 			</MenubarMenu>
 			<MenubarMenu>
-				<MenubarTrigger>{t("reports")}</MenubarTrigger>
+				<MenubarTrigger>{t("file")}</MenubarTrigger>
 				<MenubarContent>
 					<MenubarItem asChild>
-						<Link href="/reports">{t("stored")}</Link>
+						<Link href="/dialog/import-report">{t("import")}</Link>
 					</MenubarItem>
-					<MenubarSeparator />
 					<MenubarItem asChild>
-						<Link href="/reports/import">{t("import")}</Link>
+						<Link href="/reports">{t("newAssembly")}</Link>
 					</MenubarItem>
 				</MenubarContent>
 			</MenubarMenu>
 			<MenubarMenu>
-				<MenubarTrigger>{t("assemblies")}</MenubarTrigger>
+				<MenubarTrigger>{t("help")}</MenubarTrigger>
 				<MenubarContent>
 					<MenubarItem asChild>
-						<Link href="/assemblies">{t("stored")}</Link>
+						<Link href="/about">{t("about")}</Link>
 					</MenubarItem>
-					<MenubarSeparator />
-					<MenubarItem asChild>
-						<Link href="/assemblies/new">{t("newAssembly")}</Link>
-					</MenubarItem>
-				</MenubarContent>
-			</MenubarMenu>
-			<MenubarMenu>
-				<MenubarTrigger>{t("about")}</MenubarTrigger>
-				<MenubarContent>
 					<MenubarItem asChild>
 						<Link href="/settings">{t("settings")}</Link>
 					</MenubarItem>

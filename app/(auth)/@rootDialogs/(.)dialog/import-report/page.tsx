@@ -9,14 +9,10 @@ import { Label } from "@/components/ui/label"
 
 type SearchParams = { broker: string }
 
-export default async function Page({
-	searchParams,
-}: {
-	searchParams: SearchParams
-}) {
+export default async function Page() {
 	return (
 		<Dialog
-			title={searchParams.broker + " import"}
+			title={"import"}
 			description="Import ročního daňového výpisu za daný rok."
 		>
 			<form action={importReport}>
