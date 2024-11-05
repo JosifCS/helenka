@@ -18,10 +18,8 @@ export function TabSelect() {
 		>
 			<div className="space-between flex items-center">
 				<TabsList>
-					<TabsTrigger value="reports" className="relative">
-						Výkazy
-					</TabsTrigger>
-					<TabsTrigger value="assemblies">Sestavení</TabsTrigger>
+					<TabsTrigger value="reports">Výkazy</TabsTrigger>
+					<TabsTrigger value="assemblies">Sestavy</TabsTrigger>
 				</TabsList>
 			</div>
 		</Tabs>
