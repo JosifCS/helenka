@@ -15,7 +15,7 @@ export default async function Page() {
 			title={"import"}
 			description="Import ročního daňového výpisu za daný rok."
 		>
-			<form action={importReport}>
+			<form /*action={importReport}*/>
 				<div className="grid gap-4 py-4">
 					<div className="grid grid-cols-4 items-center gap-4">
 						<Label htmlFor="year" className="text-right">
