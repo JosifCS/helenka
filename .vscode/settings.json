@@ -16,8 +16,8 @@
 
 	"json.schemas": [
 		{
-			"fileMatch": ["/dictionaries/*.portu.json"],
-			"url": "/.vscode/portuSchema.json"
+			"fileMatch": ["/dictionaries/*.report.json"],
+			"url": "/.vscode/reportSchema.json"
 		}
 	],
 

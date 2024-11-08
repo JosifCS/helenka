@@ -1,0 +1,546 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "ReportSchema",
+	"description": "Schéma pro daňový výpis.",
+	"type": "object",
+	"definitions": {
+		"ForeginIncome": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
+				},
+				"sheet": {
+					"type": "string",
+					"description": "Název listu, na kterém se tabulka nachází."
+				},
+				"columns": {
+					"type": "object",
+					"description": "Sloupce tabulky.",
+					"properties": {
+						"id": {
+							"type": "object",
+							"description": "ID řádku.",
+							"$ref": "#/definitions/Column"
+						},
+						"dates": {
+							"type": "object",
+							"description": "Datum nákupu a prodeje v jedné buňce ve formátu BUY_DATE / SELL_DATE.",
+							"$ref": "#/definitions/Column"
+						},
+						"dateIn": {
+							"type": "object",
+							"description": "Datum nákupu. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"isin": {
+							"type": "object",
+							"description": "ISIN obchodu.",
+							"$ref": "#/definitions/Column"
+						},
+						"name": {
+							"type": "object",
+							"description": "Název instrumentu.",
+							"$ref": "#/definitions/Column"
+						},
+						"count": {
+							"type": "object",
+							"description": "Počet obchdovaných jednotek.",
+							"$ref": "#/definitions/Column"
+						},
+						"unitBuy": {
+							"type": "object",
+							"description": "Jednotková nákupní cena.",
+							"$ref": "#/definitions/Column"
+						},
+						"unitSell": {
+							"type": "object",
+							"description": "Jednotková prodejní cena.",
+							"$ref": "#/definitions/Column"
+						},
+						"buyRate": {
+							"type": "object",
+							"description": "Směnný kurz do KČ při nákupu. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"sellRate": {
+							"type": "object",
+							"description": "Směnný kurz do KČ při prodeji. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"expenseCzk": {
+							"type": "object",
+							"description": "Celkový výdaj na pořízení v KČ. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"incomeCzk": {
+							"type": "object",
+							"description": "Cekový přijem z prodeje v KČ. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"profitCzk": {
+							"type": "object",
+							"description": "Zisk (ztráta) v KČ. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"timeTest": {
+							"type": "object",
+							"description": "Spněn časový test. Očekávané hodnoty: Ano, Ne.",
+							"$ref": "#/definitions/Column"
+						}
+					},
+					"required": [
+						"dates",
+						"isin",
+						"name",
+						"count",
+						"unitBuy",
+						"unitSell",
+						"timeTest"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": ["sheet", "columns"],
+			"additionalProperties": false
+		},
+		"CzkIncome": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
+				},
+				"sheet": {
+					"type": "string",
+					"description": "Název listu, na kterém se tabulka nachází."
+				},
+				"columns": {
+					"type": "object",
+					"description": "Sloupce tabulky.",
+					"properties": {
+						"id": {
+							"type": "object",
+							"description": "ID řádku.",
+							"$ref": "#/definitions/Column"
+						},
+						"dates": {
+							"type": "object",
+							"description": "Datum nákupu a prodeje v jedné buňce ve formátu BUY_DATE / SELL_DATE.",
+							"$ref": "#/definitions/Column"
+						},
+						"dateIn": {
+							"type": "object",
+							"description": "Datum nákupu. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"isin": {
+							"type": "object",
+							"description": "ISIN obchodu.",
+							"$ref": "#/definitions/Column"
+						},
+						"name": {
+							"type": "object",
+							"description": "Název instrumentu.",
+							"$ref": "#/definitions/Column"
+						},
+						"count": {
+							"type": "object",
+							"description": "Počet obchdovaných jednotek.",
+							"$ref": "#/definitions/Column"
+						},
+						"unitBuy": {
+							"type": "object",
+							"description": "Jednotková nákupní cena.",
+							"$ref": "#/definitions/Column"
+						},
+						"unitSell": {
+							"type": "object",
+							"description": "Jednotková prodejní cena.",
+							"$ref": "#/definitions/Column"
+						},
+						"expense": {
+							"type": "object",
+							"description": "Celkový výdaj na pořízení v KČ. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"income": {
+							"type": "object",
+							"description": "Cekový přijem z prodeje v KČ. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"profit": {
+							"type": "object",
+							"description": "Zisk (ztráta) v KČ. Nezahrnuje se do výpočtu, pouze kontrolní sloupec.",
+							"$ref": "#/definitions/Column"
+						},
+						"timeTest": {
+							"type": "object",
+							"description": "Spněn časový test. Očekávané hodnoty: Ano, Ne.",
+							"$ref": "#/definitions/Column"
+						}
+					},
+					"required": [
+						"id",
+						"dates",
+						"isin",
+						"name",
+						"count",
+						"unitBuy",
+						"unitSell",
+						"timeTest"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": ["sheet", "columns"],
+			"additionalProperties": false
+		},
+		"Income": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
+				},
+				"sheet": {
+					"type": "string",
+					"description": "Název listu, na kterém se tabulka nachází."
+				},
+				"columns": {
+					"type": "object",
+					"description": "Sloupce tabulky.",
+					"properties": {
+						"id": {
+							"type": "object",
+							"description": "ID řádku.",
+							"$ref": "#/definitions/Column"
+						},
+						"dateIn": {
+							"type": "object",
+							"description": "Datum nákupu.",
+							"$ref": "#/definitions/Column"
+						},
+						"dateOut": {
+							"type": "object",
+							"description": "Datum prodeje.",
+							"$ref": "#/definitions/Column"
+						},
+						"isin": {
+							"type": "object",
+							"description": "ISIN obchodu.",
+							"$ref": "#/definitions/Column"
+						},
+						"name": {
+							"type": "object",
+							"description": "Název instrumentu.",
+							"$ref": "#/definitions/Column"
+						},
+						"count": {
+							"type": "object",
+							"description": "Počet obchdovaných jednotek.",
+							"$ref": "#/definitions/Column"
+						},
+						"unitBuy": {
+							"type": "object",
+							"description": "Jednotková nákupní cena v USD.",
+							"$ref": "#/definitions/Column"
+						},
+						"unitSell": {
+							"type": "object",
+							"description": "Jednotková prodejní cena v USD.",
+							"$ref": "#/definitions/Column"
+						}
+					},
+					"required": [],
+					"additionalProperties": false
+				}
+			},
+			"required": ["sheet", "columns"],
+			"additionalProperties": false
+		},
+		"CurrencyHedging": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
+				},
+				"sheet": {
+					"type": "string",
+					"description": "Název listu, na kterém se tabulka nachází."
+				},
+				"columns": {
+					"type": "object",
+					"description": "Sloupce tabulky.",
+					"properties": {
+						"id": {
+							"type": "object",
+							"description": "ID řádku.",
+							"$ref": "#/definitions/Column"
+						},
+						"name": {
+							"type": "object",
+							"description": "Název instrumentu.",
+							"$ref": "#/definitions/Column"
+						},
+						"position": {
+							"type": "object",
+							"description": "Pozice. ???",
+							"$ref": "#/definitions/Column"
+						},
+						"dateIn": {
+							"type": "object",
+							"description": "Datum sjednání.",
+							"$ref": "#/definitions/Column"
+						},
+						"dateOut": {
+							"type": "object",
+							"description": "Datum splatnosti.",
+							"$ref": "#/definitions/Column"
+						},
+						"buyRate": {
+							"type": "object",
+							"description": "Směnný kurz do KČ při sjednání.",
+							"$ref": "#/definitions/Column"
+						},
+						"sellRate": {
+							"type": "object",
+							"description": "Směnný kurz do KČ při splatnosti.",
+							"$ref": "#/definitions/Column"
+						},
+						"profit": {
+							"type": "object",
+							"description": "Zisk (ztráta) v KČ.",
+							"$ref": "#/definitions/Column"
+						}
+					},
+					"required": [
+						"name",
+						"position",
+						"dateIn",
+						"dateOut",
+						"buyRate",
+						"sellRate",
+						"profit"
+					],
+					"additionalProperties": false
+				}
+			},
+			"required": ["sheet", "columns"],
+			"additionalProperties": false
+		},
+		"Fees": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
+				},
+				"sheet": {
+					"type": "string",
+					"description": "Název listu, na kterém se tabulka nachází."
+				},
+				"columns": {
+					"type": "object",
+					"description": "Sloupce tabulky.",
+					"properties": {
+						"id": {
+							"type": "object",
+							"description": "ID řádku.",
+							"$ref": "#/definitions/Column"
+						},
+						"date": {
+							"type": "object",
+							"description": "Datum zaplacení.",
+							"$ref": "#/definitions/Column"
+						},
+						"name": {
+							"type": "object",
+							"description": "Název instrumentu.",
+							"$ref": "#/definitions/Column"
+						},
+						"fee": {
+							"type": "object",
+							"description": "Zaplaceno v KČ.",
+							"$ref": "#/definitions/Column"
+						}
+					},
+					"required": ["date", "name", "fee"],
+					"additionalProperties": false
+				}
+			},
+			"required": ["sheet", "columns"],
+			"additionalProperties": false
+		},
+		"Dividends": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
+				},
+				"sheet": {
+					"type": "string",
+					"description": "Název listu, na kterém se tabulka nachází."
+				},
+				"columns": {
+					"type": "object",
+					"description": "Sloupce tabulky.",
+					"properties": {
+						"id": {
+							"type": "object",
+							"description": "ID řádku.",
+							"$ref": "#/definitions/Column"
+						},
+						"date": {
+							"type": "object",
+							"description": "Datum připsání.",
+							"$ref": "#/definitions/Column"
+						},
+						"isin": {
+							"type": "object",
+							"description": "ISIN obchodu.",
+							"$ref": "#/definitions/Column"
+						},
+						"name": {
+							"type": "object",
+							"description": "Název instrumentu.",
+							"$ref": "#/definitions/Column"
+						},
+						"gross": {
+							"type": "object",
+							"description": "Hrubý příjem.",
+							"$ref": "#/definitions/Column"
+						},
+						"rate": {
+							"type": "object",
+							"description": "Směnný kurz do KČ.",
+							"$ref": "#/definitions/Column"
+						},
+						"grossCzk": {
+							"type": "object",
+							"description": "Hrubý přijem v KČ.",
+							"$ref": "#/definitions/Column"
+						},
+						"sourceWithholdingTax": {
+							"type": "object",
+							"description": "Sazba srážkové daně ve státě zdroje příjmu.",
+							"$ref": "#/definitions/Column"
+						},
+						"czWithholdingTax": {
+							"type": "object",
+							"description": "Sazba SD dle SZDZ.",
+							"$ref": "#/definitions/Column"
+						},
+						"sourceWithholdingTaxvalue": {
+							"type": "object",
+							"description": "Hodnota sražené daně ve státě zdroje.",
+							"$ref": "#/definitions/Column"
+						},
+						"czWithholdingTaxValue": {
+							"type": "object",
+							"description": "Hodnota sražené daně ve státě zdroje (v CZK).",
+							"$ref": "#/definitions/Column"
+						},
+						"creditedTax": {
+							"type": "object",
+							"description": "Hodnota daně k zápočtu (v CZK).",
+							"$ref": "#/definitions/Column"
+						}
+					},
+					"required": ["date", "isin", "name", "gross"],
+					"additionalProperties": false
+				}
+			},
+			"required": ["sheet", "columns"],
+			"additionalProperties": false
+		},
+		"Column": {
+			"type": "object",
+			"properties": {
+				"header": {
+					"type": "string",
+					"description": "Název sloupce v originálním souboru. Slouží pro kontrolu, že se čte správný sloupec."
+				},
+				"column": {
+					"type": "string",
+					"description": "Excelovské označení sloupce tabulky (A, B, C...)."
+				}
+			},
+			"required": ["header", "column"],
+			"additionalProperties": false
+		}
+	},
+	"properties": {
+		"broker": {
+			"type": "string",
+			"enum": ["portu", "etoro", "xtb"],
+			"description": "Od kterého je to brokera."
+		},
+		"version": {
+			"type": "number",
+			"description": "Označení verze formátu výpisu."
+		},
+		"description": {
+			"type": "string",
+			"description": "Volitelný popis. Třeba informace k verzi."
+		},
+		"incomesUsd": {
+			"type": "object",
+			"description": "Tabulka s příjmy v Dolarech. Nemůže být definováno zároveň s tabulkou všech příjmů.",
+			"$ref": "#/definitions/ForeginIncome"
+		},
+		"incomesEur": {
+			"type": "object",
+			"description": "Tabulka s příjmy v Eurech. Nemůže být definováno zároveň s tabulkou všech příjmů.",
+			"$ref": "#/definitions/ForeginIncome"
+		},
+		"incomesCzk": {
+			"type": "object",
+			"description": "Tabulka s příjmy v Korunách. Nemůže být definováno zároveň s tabulkou všech příjmů.",
+			"$ref": "#/definitions/CzkIncome"
+		},
+		"incomes": {
+			"type": "object",
+			"description": "Tabulka se všemy příjmy. Nemůže být definováno tároveň s tabulkami příjmu rozdělených podle měny",
+			"$ref": "#/definitions/Income"
+		},
+		"currencyHedging": {
+			"type": "object",
+			"description": "Tabulka s příjmy z měnového zajištění.",
+			"$ref": "#/definitions/CurrencyHedging"
+		},
+		"fees": {
+			"type": "object",
+			"description": "Tabulka s poplatky.",
+			"$ref": "#/definitions/Fees"
+		},
+		"dividendsUsd": {
+			"type": "object",
+			"description": "Tabulka s příjmy z dividend.",
+			"$ref": "#/definitions/Dividends"
+		}
+	},
+	"oneOf": [
+		{
+			"required": ["incomes"],
+			"not": {
+				"anyOf": [
+					{ "required": ["incomesEur"] },
+					{ "required": ["IncomesUsd"] },
+					{ "required": ["incomesCzk"] }
+				]
+			}
+		},
+		{
+			"required": ["incomesEur", "incomesUsd", "incomesCzk"],
+			"not": {
+				"required": ["incomes"]
+			}
+		}
+	],
+	"required": ["broker", "version", "dividendsUsd"],
+	"additionalProperties": false
+}

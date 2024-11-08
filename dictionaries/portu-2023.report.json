@@ -1,0 +1,297 @@
+{
+	"broker": "portu",
+	"version": 1,
+	"description": "Verze platná pro výpis z roku 2023",
+	"incomesUsd": {
+		"name": "Příjmy v USD",
+		"sheet": "sheet1",
+		"columns": {
+			"id": {
+				"column": "A",
+				"header": "#"
+			},
+			"dates": {
+				"column": "B",
+				"header": "Datum prodeje/nákupu"
+			},
+			"dateIn": {
+				"column": "C",
+				"header": "Datum nakupu"
+			},
+			"isin": {
+				"column": "D",
+				"header": "ISIN"
+			},
+			"name": {
+				"column": "E",
+				"header": "Instrument"
+			},
+			"count": {
+				"column": "F",
+				"header": "Počet prodaných kusů"
+			},
+			"unitBuy": {
+				"column": "G",
+				"header": "Nákupní cena* (v USD)"
+			},
+			"unitSell": {
+				"column": "H",
+				"header": "Prodejní cena (v USD)"
+			},
+			"buyRate": {
+				"column": "I",
+				"header": "Kurz USD/CZK - při nákupu"
+			},
+			"sellRate": {
+				"column": "J",
+				"header": "Kurz USD/CZK - při prodeji"
+			},
+			"incomeCzk": {
+				"column": "K",
+				"header": "Příjem z prodeje (v CZK)"
+			},
+			"expenseCzk": {
+				"column": "L",
+				"header": "Výdaj na pořízení a prodej (v CZK)"
+			},
+			"profitCzk": {
+				"column": "M",
+				"header": "Zisk/ztráta** (v CZK)"
+			},
+			"timeTest": {
+				"column": "N",
+				"header": "Splněn časový test?"
+			}
+		}
+	},
+	"incomesEur": {
+		"name": "Příjmy v EUR",
+		"sheet": "sheet1",
+		"columns": {
+			"id": {
+				"column": "A",
+				"header": "#"
+			},
+			"dates": {
+				"column": "B",
+				"header": "Datum prodeje/nákupu"
+			},
+			"dateIn": {
+				"column": "C",
+				"header": "Datum nakupu"
+			},
+			"isin": {
+				"column": "D",
+				"header": "ISIN"
+			},
+			"name": {
+				"column": "E",
+				"header": "Instrument"
+			},
+			"count": {
+				"column": "F",
+				"header": "Počet prodaných kusů"
+			},
+			"unitBuy": {
+				"column": "G",
+				"header": "Nákupní cena* (v EUR)"
+			},
+			"unitSell": {
+				"column": "H",
+				"header": "Prodejní cena (v EUR)"
+			},
+			"buyRate": {
+				"column": "I",
+				"header": "Kurz EUR/CZK - při nákupu"
+			},
+			"sellRate": {
+				"column": "J",
+				"header": "Kurz EUR/CZK - při prodeji"
+			},
+			"incomeCzk": {
+				"column": "K",
+				"header": "Příjem z prodeje (v CZK)"
+			},
+			"expenseCzk": {
+				"column": "L",
+				"header": "Výdaj na pořízení a prodej (v CZK)"
+			},
+			"profitCzk": {
+				"column": "M",
+				"header": "Zisk/ztráta** (v CZK)"
+			},
+			"timeTest": {
+				"column": "N",
+				"header": "Splněn časový test?"
+			}
+		}
+	},
+	"incomesCzk": {
+		"name": "Příjmy v CZK",
+		"sheet": "sheet1",
+		"columns": {
+			"id": {
+				"column": "A",
+				"header": "#"
+			},
+			"dates": {
+				"column": "B",
+				"header": "Datum prodeje/nákupu"
+			},
+			"dateIn": {
+				"column": "C",
+				"header": "Datum nakupu"
+			},
+			"isin": {
+				"column": "D",
+				"header": "ISIN"
+			},
+			"name": {
+				"column": "E",
+				"header": "Instrument"
+			},
+			"count": {
+				"column": "F",
+				"header": "Počet prodaných kusů"
+			},
+			"unitBuy": {
+				"column": "G",
+				"header": "Nákupní cena* (v CZK)"
+			},
+			"unitSell": {
+				"column": "H",
+				"header": "Prodejní cena (v CZK)"
+			},
+			"income": {
+				"column": "K",
+				"header": "Příjem z prodeje (v CZK)"
+			},
+			"expense": {
+				"column": "L",
+				"header": "Výdaj na pořízení a prodej (v CZK)"
+			},
+			"profit": {
+				"column": "M",
+				"header": "Zisk/ztráta** (v CZK)"
+			},
+			"timeTest": {
+				"column": "N",
+				"header": "Splněn časový test?"
+			}
+		}
+	},
+	"currencyHedging": {
+		"name": "b. Příjmy/výdaje na měnové zajištění",
+		"sheet": "sheet1",
+		"columns": {
+			"id": {
+				"column": "A",
+				"header": "#"
+			},
+			"name": {
+				"column": "B",
+				"header": "Instrument"
+			},
+			"position": {
+				"column": "C",
+				"header": "Pozice"
+			},
+			"dateIn": {
+				"column": "D",
+				"header": "Datum sjednání"
+			},
+			"dateOut": {
+				"column": "E",
+				"header": "Datum splatnosti"
+			},
+			"buyRate": {
+				"column": "F",
+				"header": "Kurz při sjednání"
+			},
+			"sellRate": {
+				"column": "G",
+				"header": "Kurz pro den splatnosti"
+			},
+			"profit": {
+				"column": "H",
+				"header": "Příjem/výdaj (v CZK)"
+			}
+		}
+	},
+	"fees": {
+		"name": " Naúčtované poplatky v CZK",
+		"sheet": "sheet1",
+		"columns": {
+			"id": {
+				"column": "A",
+				"header": "#"
+			},
+			"date": {
+				"column": "B",
+				"header": "Datum"
+			},
+			"name": {
+				"column": "C",
+				"header": "Typ poplatku"
+			},
+			"fee": {
+				"column": "D",
+				"header": "Hodnota v CZK"
+			}
+		}
+	},
+	"dividendsUsd": {
+		"name": "Připsané dividendy v USD",
+		"sheet": "sheet1",
+		"columns": {
+			"id": {
+				"column": "A",
+				"header": "#"
+			},
+			"date": {
+				"column": "B",
+				"header": "Datum"
+			},
+			"isin": {
+				"column": "C",
+				"header": "ISIN"
+			},
+			"name": {
+				"column": "D",
+				"header": "Instrument"
+			},
+			"gross": {
+				"column": "E",
+				"header": "Hrubá hodnota (v USD)"
+			},
+			"rate": {
+				"column": "F",
+				"header": "Kurz USD/CZK"
+			},
+			"grossCzk": {
+				"column": "G",
+				"header": "Hrubá hodnota* (v CZK)"
+			},
+			"sourceWithholdingTax": {
+				"column": "H",
+				"header": "Sazba SD ve státě zdroje příjmu"
+			},
+			"czWithholdingTax": {
+				"column": "I",
+				"header": "Sazba SD dle SZDZ"
+			},
+			"sourceWithholdingTaxvalue": {
+				"column": "J",
+				"header": "Hodnota sražené daně ve státě zdroje (v USD)"
+			},
+			"czWithholdingTaxValue": {
+				"column": "K",
+				"header": "Hodnota sražené daně ve státě zdroje (v CZK)"
+			},
+			"creditedTax": {
+				"column": "L",
+				"header": "Hodnota daně k zápočtu (v CZK)"
+			}
+		}
+	}
+}
