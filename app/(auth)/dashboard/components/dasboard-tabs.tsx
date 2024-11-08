@@ -3,12 +3,10 @@
 import { usePathname, useRouter } from "next/navigation"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export function TabSelect() {
+export function DashboardTabs() {
 	const router = useRouter()
 	const pathname = usePathname()
 	const value = pathname.split("/")[2] || "reports"
-
-	console.log(value)
 
 	return (
 		<Tabs
