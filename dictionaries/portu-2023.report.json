@@ -160,19 +160,19 @@
 				"header": "Prodejní cena (v CZK)"
 			},
 			"income": {
-				"column": "K",
+				"column": "I",
 				"header": "Příjem z prodeje (v CZK)"
 			},
 			"expense": {
-				"column": "L",
+				"column": "J",
 				"header": "Výdaj na pořízení a prodej (v CZK)"
 			},
 			"profit": {
-				"column": "M",
-				"header": "Zisk/ztráta** (v CZK)"
+				"column": "K",
+				"header": "Zisk/ztráta (v CZK)"
 			},
 			"timeTest": {
-				"column": "N",
+				"column": "L",
 				"header": "Splněn časový test?"
 			}
 		}
