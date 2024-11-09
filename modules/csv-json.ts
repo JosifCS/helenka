@@ -1,3 +1,18 @@
+/** Data in Excel file format.
+ * @example
+ *{
+ *   sheet1: [
+ *     {
+ *       A: 'data of cell A1',
+ *       B: 'data of cell B1',
+ *       C: 'data of cell C1'
+ *     },
+ *     ...
+ *   ]
+ * }
+ */
+export type ExcelData = Record<string, Record<string, string>[]>
+
 /**
  * Převod CSV souboru na objekt indexovaný jako Exelová tabulka. Jen s jednou stránkou.
  * @param csvFile CSV soubor.
@@ -21,7 +36,7 @@ export async function csvToJson(
 	csvFile: File,
 	columnSeparator: ";" | "," | "\t" | " " = ";",
 	lineBreak: "\r" | "\n" | "\r\n" = "\r\n"
-): Promise<Record<string, Record<string, string>[]>> {
+): Promise<ExcelData> {
 	const raw = await csvFile.text(),
 		rawGrid = raw.split(lineBreak).map((x) => x.split(columnSeparator))
 
