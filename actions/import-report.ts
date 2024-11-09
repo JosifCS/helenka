@@ -32,6 +32,6 @@ export const importReport = authActionClient
 		return {
 			success: true,
 			message: "ok",
-			redirect: `/dashboard/reports`, // TODO reálně se můžu vracet na různé stránky, protože dialog je přístupný všude
+			//redirect: `/dashboard/reports`, // TODO reálně se můžu vracet na různé stránky, protože dialog je přístupný všude
 		}
 	})

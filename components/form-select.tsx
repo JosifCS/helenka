@@ -1,6 +1,6 @@
 "use client"
 
-import { useId } from "react"
+import { useId, useState } from "react"
 import { useFormContext } from "./form"
 import { Label } from "./ui/label"
 import {
@@ -31,13 +31,14 @@ export function FormSelect({
 	...props
 }: FormSelectProps) {
 	const result = useFormContext() as { validationErrors: any }
+	//const [value, setValue] = useState<string | undefined>(defaultValue)
 	const id = useId()
 
 	return (
 		<div className="grid w-full items-center gap-1.5">
 			{label && <Label htmlFor={id}>{label}</Label>}
-			<Select>
-				<SelectTrigger {...props}>
+			<Select {...props}>
+				<SelectTrigger>
 					<SelectValue placeholder={placeholder} />
 				</SelectTrigger>
 				<SelectContent>
