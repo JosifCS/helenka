@@ -1,4 +1,4 @@
-import { importReport } from "@/actions/importReport"
+import { importReport } from "@/actions/import-report"
 import { Dialog } from "@/components/dialog"
 import { Form } from "@/components/form"
 import { Button } from "@/components/ui/button"

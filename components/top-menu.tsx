@@ -1,4 +1,4 @@
-import { setLocale } from "@/actions/setLocale"
+import { setLocale } from "@/actions/set-locale"
 import {
 	Menubar,
 	MenubarContent,
