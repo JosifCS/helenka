@@ -1,5 +1,6 @@
 import { importReport } from "@/actions/importReport"
 import { Dialog } from "@/components/dialog"
+import { Form } from "@/components/form"
 import { Button } from "@/components/ui/button"
 import { DialogFooter } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
@@ -15,7 +16,7 @@ export default async function Page() {
 			title={"import"}
 			description="Import ročního daňového výpisu za daný rok."
 		>
-			<form /*action={importReport}*/>
+			<Form action={importReport}>
 				<div className="grid gap-4 py-4">
 					<div className="grid grid-cols-4 items-center gap-4">
 						<Label htmlFor="year" className="text-right">
@@ -23,6 +24,7 @@ export default async function Page() {
 						</Label>
 						<Input
 							name="year"
+							id="year"
 							type="number"
 							maxLength={4}
 							min={2000}
@@ -37,6 +39,7 @@ export default async function Page() {
 						</Label>
 						<Input
 							id="report"
+							name="report"
 							type="file"
 							accept="text/csv"
 							className="col-span-3"
@@ -46,7 +49,7 @@ export default async function Page() {
 				<DialogFooter>
 					<Button type="submit">Importovat</Button>
 				</DialogFooter>
-			</form>
+			</Form>
 		</Dialog>
 	)
 }
