@@ -13,7 +13,7 @@
 				},
 				"sheet": {
 					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází."
+					"description": "Název listu, na kterém se tabulka nachází. Výchozí hodnta je sheet1."
 				},
 				"columns": {
 					"type": "object",
@@ -102,7 +102,7 @@
 					"additionalProperties": false
 				}
 			},
-			"required": ["sheet", "columns"],
+			"required": ["columns"],
 			"additionalProperties": false
 		},
 		"CzkIncome": {
@@ -114,7 +114,7 @@
 				},
 				"sheet": {
 					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází."
+					"description": "Název listu, na kterém se tabulka nachází. Výchozí hodnta je sheet1."
 				},
 				"columns": {
 					"type": "object",
@@ -194,7 +194,7 @@
 					"additionalProperties": false
 				}
 			},
-			"required": ["sheet", "columns"],
+			"required": ["columns"],
 			"additionalProperties": false
 		},
 		"Income": {
@@ -206,7 +206,7 @@
 				},
 				"sheet": {
 					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází."
+					"description": "Název listu, na kterém se tabulka nachází. Výchozí hodnta je sheet1."
 				},
 				"columns": {
 					"type": "object",
@@ -257,7 +257,7 @@
 					"additionalProperties": false
 				}
 			},
-			"required": ["sheet", "columns"],
+			"required": ["columns"],
 			"additionalProperties": false
 		},
 		"CurrencyHedging": {
@@ -269,7 +269,7 @@
 				},
 				"sheet": {
 					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází."
+					"description": "Název listu, na kterém se tabulka nachází. Výchozí hodnta je sheet1."
 				},
 				"columns": {
 					"type": "object",
@@ -328,7 +328,7 @@
 					"additionalProperties": false
 				}
 			},
-			"required": ["sheet", "columns"],
+			"required": ["columns"],
 			"additionalProperties": false
 		},
 		"Fees": {
@@ -340,7 +340,7 @@
 				},
 				"sheet": {
 					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází."
+					"description": "Název listu, na kterém se tabulka nachází. Výchozí hodnta je sheet1."
 				},
 				"columns": {
 					"type": "object",
@@ -371,7 +371,7 @@
 					"additionalProperties": false
 				}
 			},
-			"required": ["sheet", "columns"],
+			"required": ["columns"],
 			"additionalProperties": false
 		},
 		"Dividends": {
@@ -383,7 +383,7 @@
 				},
 				"sheet": {
 					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází."
+					"description": "Název listu, na kterém se tabulka nachází.  Výchozí hodnta je sheet1."
 				},
 				"columns": {
 					"type": "object",
@@ -454,7 +454,7 @@
 					"additionalProperties": false
 				}
 			},
-			"required": ["sheet", "columns"],
+			"required": ["columns"],
 			"additionalProperties": false
 		},
 		"Column": {
