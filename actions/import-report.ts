@@ -9,6 +9,7 @@ import path from "path"
 import fs from "fs"
 import { z } from "zod"
 import { ReportSchema } from "@/modules/report-schema"
+import { NotImplementedError } from "@/types/error"
 
 const schema = zfd.formData({
 	report: zfd.file(),
@@ -18,9 +19,10 @@ const schema = zfd.formData({
 export const importReport = authActionClient
 	.schema(schema)
 	.action(async function ({ parsedInput: { report, broker } }) {
-		// TODO univerzální import výkazů
+		const json = broker == "portu" ? await csvToJson(report) : null
 
-		const json = await csvToJson(report)
+		if (json == null) throw new NotImplementedError("Broker.")
+
 		const data = ReportBuilder.build(json, portuSchema as ReportSchema)
 
 		// TODO univerzální ukládání

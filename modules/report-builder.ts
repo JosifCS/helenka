@@ -1,3 +1,4 @@
+import { NotImplementedError } from "@/types/error"
 import { ExcelData } from "./csv-json"
 import { ReportSchema, reportSchema } from "./report-schema"
 
@@ -53,8 +54,8 @@ export class ReportBuilder {
 					to: new Date(fees![0].date.getFullYear() + 1, 0, 0),
 				}
 			default:
-				throw new Error(
-					"Error in Report builder. GetReportRange not implemented."
+				throw new NotImplementedError(
+					"Error in Report builder. GetReportRange."
 				)
 		}
 	}
