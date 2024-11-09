@@ -1,11 +1,3 @@
-export type DateRange = { from: Date; to: Date };
+import { getTranslations } from "next-intl/server"
 
-export type RawTableDefinition = {
-  name: string;
-  columns: {
-    key: string;
-    type: string;
-    index: number;
-    name: string;
-  }[];
-};
+export type Translations = Awaited<ReturnType<typeof getTranslations>>
