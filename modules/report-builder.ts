@@ -20,9 +20,14 @@ export class ReportBuilder {
 	 */
 	public static build(excel: ExcelData, schema: ReportSchema): Report {
 		const b = new ReportBuilder(excel, ReportBuilder.validateSchema(schema))
+		const broker = b.schema.broker,
+			fees = b.parseFees()
+		const { from, to } = ReportBuilder.getReportRange(broker, fees)
 
 		const report: Report = {
-			broker: b.schema.broker,
+			broker,
+			from,
+			to,
 			version: b.schema.version,
 			description: b.schema.description ?? null,
 			incomeUsd: b.parseIncomeForegin(b.schema.incomesUsd),
@@ -30,11 +35,28 @@ export class ReportBuilder {
 			incomeCzk: b.parseIncomeCzk(),
 			income: b.parseIncome(),
 			currencyHedging: b.parseCurrencyHedging(),
-			fees: b.parseFees(),
+			fees,
 			dividendsUsd: b.parseDividends(b.schema.dividendsUsd),
 		}
 
 		return report
+	}
+
+	private static getReportRange(
+		broker: "portu" | "xtb" | "etoro",
+		fees: Fee[] | null
+	) {
+		switch (broker) {
+			case "portu":
+				return {
+					from: new Date(fees![0].date.getFullYear(), 0, 1),
+					to: new Date(fees![0].date.getFullYear() + 1, 0, 0),
+				}
+			default:
+				throw new Error(
+					"Error in Report builder. GetReportRange not implemented."
+				)
+		}
 	}
 
 	/**
@@ -357,8 +379,11 @@ type TableSchemaWithColumns = {
 }
 
 export type Report = {
-	broker: string
+	broker: "portu" | "xtb" | "etoro"
+	/** Označení verze formátu výpisu. Zpravidla se jedná o rok. */
 	version: number
+	from: Date
+	to: Date
 	description: string | null
 	incomeUsd: IncomeForegin[] | null
 	incomeEur: IncomeForegin[] | null

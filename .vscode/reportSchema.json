@@ -488,7 +488,7 @@
 		},
 		"version": {
 			"type": "number",
-			"description": "Označení verze formátu výpisu."
+			"description": "Označení verze formátu výpisu. Zpravidla se jedná o rok."
 		},
 		"description": {
 			"type": "string",

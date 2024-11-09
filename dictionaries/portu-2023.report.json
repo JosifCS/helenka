@@ -1,6 +1,6 @@
 {
 	"broker": "portu",
-	"version": 1,
+	"version": 2023,
 	"description": "Verze platná pro výpis z roku 2023",
 	"incomesUsd": {
 		"name": "Příjmy v USD",

@@ -82,7 +82,7 @@ const dividendsColumnsSchema = z.object({
 })
 
 export const reportSchema = z.object({
-	broker: z.string(),
+	broker: z.enum(["portu", "xtb", "etoro"]),
 	version: z.number(),
 	description: z.string().optional(),
 	incomesUsd: z
