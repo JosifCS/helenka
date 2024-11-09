@@ -16,14 +16,14 @@ type DialogProps = {
 export function Dialog({ title, children, description }: DialogProps) {
 	return (
 		<ActionDialog>
-			<DialogContent>
+			<DialogContent size={"xs"}>
 				<DialogHeader>
 					<DialogTitle>{title}</DialogTitle>
 					{description && (
 						<DialogDescription>{description}</DialogDescription>
 					)}
-					{children}
 				</DialogHeader>
+				{children}
 			</DialogContent>
 		</ActionDialog>
 	)
