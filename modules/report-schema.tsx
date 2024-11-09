@@ -76,7 +76,7 @@ const dividendsColumnsSchema = z.object({
 	grossCzk: columnSchema.optional(),
 	sourceWithholdingTax: columnSchema.optional(),
 	czWithholdingTax: columnSchema.optional(),
-	sourceWithholdingTaxvalue: columnSchema.optional(),
+	sourceWithholdingTaxValue: columnSchema.optional(),
 	czWithholdingTaxValue: columnSchema.optional(),
 	creditedTax: columnSchema.optional(),
 })
@@ -85,28 +85,28 @@ export const reportSchema = z.object({
 	broker: z.string(),
 	version: z.number(),
 	description: z.string().optional(),
-	incomeUsd: z
+	incomesUsd: z
 		.object({
 			name: z.string().optional(),
 			sheet: z.string().optional(),
 			columns: foreginIncomeColumnsSchema,
 		})
 		.optional(),
-	incomeEur: z
+	incomesEur: z
 		.object({
 			name: z.string().optional(),
 			sheet: z.string().optional(),
 			columns: foreginIncomeColumnsSchema,
 		})
 		.optional(),
-	incomeCzk: z
+	incomesCzk: z
 		.object({
 			name: z.string().optional(),
 			sheet: z.string().optional(),
 			columns: czkIncomeColumnsSchema,
 		})
 		.optional(),
-	income: z
+	incomes: z
 		.object({
 			name: z.string().optional(),
 			sheet: z.string().optional(),

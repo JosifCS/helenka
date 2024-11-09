@@ -25,12 +25,13 @@ export class ReportBuilder {
 			broker: b.schema.broker,
 			version: b.schema.version,
 			description: b.schema.description ?? null,
-			incomeUsd: b.parseIncomeForegin(b.schema.incomeUsd),
-			incomeEur: b.parseIncomeForegin(b.schema.incomeEur),
+			incomeUsd: b.parseIncomeForegin(b.schema.incomesUsd),
+			incomeEur: b.parseIncomeForegin(b.schema.incomesEur),
 			incomeCzk: b.parseIncomeCzk(),
 			income: b.parseIncome(),
 			currencyHedging: b.parseCurrencyHedging(),
 			fees: b.parseFees(),
+			dividendsUsd: b.parseDividends(b.schema.dividendsUsd),
 		}
 
 		return report
@@ -52,7 +53,7 @@ export class ReportBuilder {
 	}
 
 	private parseIncomeForegin(
-		tableSchema: ReportSchema["incomeUsd"]
+		tableSchema: ReportSchema["incomesUsd"]
 	): IncomeForegin[] | null {
 		if (tableSchema == undefined) return null
 
@@ -63,14 +64,14 @@ export class ReportBuilder {
 		table.forEach((row) => {
 			this.activeRow = row
 			incomes.push({
-				count: this.getNumber(tableSchema, "count"),
+				count: this.getNumber(tableSchema, "count")!,
 				dateIn: this.getDate(tableSchema, "dates", "in"),
 				dateOut: this.getDate(tableSchema, "dates", "out"),
-				isin: this.getString(tableSchema, "isin"),
-				name: this.getString(tableSchema, "name"),
-				timeTest: this.getBoolean(tableSchema, "timeTest"),
-				unitBuy: this.getNumber(tableSchema, "unitBuy"),
-				unitSell: this.getNumber(tableSchema, "unitSell"),
+				isin: this.getString(tableSchema, "isin")!,
+				name: this.getString(tableSchema, "name")!,
+				timeTest: this.getBoolean(tableSchema, "timeTest")!,
+				unitBuy: this.getNumber(tableSchema, "unitBuy")!,
+				unitSell: this.getNumber(tableSchema, "unitSell")!,
 				buyRate: this.getNumber(tableSchema, "buyRate"),
 				expenseCzk: this.getNumber(tableSchema, "expenseCzk"),
 				id: this.getNumber(tableSchema, "id"),
@@ -84,7 +85,7 @@ export class ReportBuilder {
 	}
 
 	private parseIncomeCzk(): IncomeCzk[] | null {
-		const tableSchema = this.schema.incomeCzk
+		const tableSchema = this.schema.incomesCzk
 		if (tableSchema == undefined) return null
 
 		const incomes: IncomeCzk[] = []
@@ -94,14 +95,14 @@ export class ReportBuilder {
 		table.forEach((row) => {
 			this.activeRow = row
 			incomes.push({
-				count: this.getNumber(tableSchema, "count"),
+				count: this.getNumber(tableSchema, "count")!,
 				dateIn: this.getDate(tableSchema, "dates", "in"),
 				dateOut: this.getDate(tableSchema, "dates", "out"),
-				isin: this.getString(tableSchema, "isin"),
-				name: this.getString(tableSchema, "name"),
-				timeTest: this.getBoolean(tableSchema, "timeTest"),
-				unitBuy: this.getNumber(tableSchema, "unitBuy"),
-				unitSell: this.getNumber(tableSchema, "unitSell"),
+				isin: this.getString(tableSchema, "isin")!,
+				name: this.getString(tableSchema, "name")!,
+				timeTest: this.getBoolean(tableSchema, "timeTest")!,
+				unitBuy: this.getNumber(tableSchema, "unitBuy")!,
+				unitSell: this.getNumber(tableSchema, "unitSell")!,
 				expense: this.getNumber(tableSchema, "expense"),
 				id: this.getNumber(tableSchema, "id"),
 				income: this.getNumber(tableSchema, "income"),
@@ -113,7 +114,7 @@ export class ReportBuilder {
 	}
 
 	private parseIncome(): Income[] | null {
-		const tableSchema = this.schema.income
+		const tableSchema = this.schema.incomes
 		if (tableSchema == undefined) return null
 
 		const incomes: Income[] = []
@@ -123,13 +124,13 @@ export class ReportBuilder {
 		table.forEach((row) => {
 			this.activeRow = row
 			incomes.push({
-				count: this.getNumber(tableSchema, "count"),
+				count: this.getNumber(tableSchema, "count")!,
 				dateIn: this.getDate(tableSchema, "dateIn"),
 				dateOut: this.getDate(tableSchema, "dateOut"),
-				isin: this.getString(tableSchema, "isin"),
-				name: this.getString(tableSchema, "name"),
-				unitBuy: this.getNumber(tableSchema, "unitBuy"),
-				unitSell: this.getNumber(tableSchema, "unitSell"),
+				isin: this.getString(tableSchema, "isin")!,
+				name: this.getString(tableSchema, "name")!,
+				unitBuy: this.getNumber(tableSchema, "unitBuy")!,
+				unitSell: this.getNumber(tableSchema, "unitSell")!,
 				id: this.getNumber(tableSchema, "id"),
 			})
 		})
@@ -141,76 +142,88 @@ export class ReportBuilder {
 		const tableSchema = this.schema.currencyHedging
 		if (tableSchema == undefined) return null
 
-		const incomes: CurrencyHedging[] = []
+		const items: CurrencyHedging[] = []
 
 		const table = this.selectTableArea(tableSchema)
 
 		table.forEach((row) => {
 			this.activeRow = row
-			incomes.push({
+			items.push({
 				dateIn: this.getDate(tableSchema, "dateIn"),
 				dateOut: this.getDate(tableSchema, "dateOut"),
-				name: this.getString(tableSchema, "name"),
+				name: this.getString(tableSchema, "name")!,
 				id: this.getNumber(tableSchema, "id"),
-				profit: this.getNumber(tableSchema, "profit"),
-				buyRate: this.getNumber(tableSchema, "buyRate"),
-				position: this.getString(tableSchema, "position"),
-				sellRate: this.getNumber(tableSchema, "sellRate"),
+				profit: this.getNumber(tableSchema, "profit")!,
+				buyRate: this.getNumber(tableSchema, "buyRate")!,
+				position: this.getString(tableSchema, "position")!,
+				sellRate: this.getNumber(tableSchema, "sellRate")!,
 			})
 		})
 
-		return incomes
+		return items
 	}
 
 	private parseFees(): Fee[] | null {
 		const tableSchema = this.schema.fees
 		if (tableSchema == undefined) return null
 
-		const incomes: Fee[] = []
+		const fees: Fee[] = []
 
 		const table = this.selectTableArea(tableSchema)
 
 		table.forEach((row) => {
 			this.activeRow = row
-			incomes.push({
-				name: this.getString(tableSchema, "name"),
+			fees.push({
+				name: this.getString(tableSchema, "name")!,
 				id: this.getNumber(tableSchema, "id"),
-				date: this.getDate(tableSchema, "date"),
-				fee: this.getNumber(tableSchema, "fee"),
+				date: this.getDate(tableSchema, "date")!,
+				fee: this.getNumber(tableSchema, "fee")!,
 			})
 		})
 
-		return incomes
+		return fees
 	}
 
 	private parseDividends(
-		tableSchema: ReportSchema["incomeCzk"]
-	): IncomeCzk[] | null {
+		tableSchema: ReportSchema["dividendsUsd"]
+	): Dividend[] | null {
 		if (tableSchema == undefined) return null
 
-		const incomes: IncomeCzk[] = []
+		const dividends: Dividend[] = []
 
 		const table = this.selectTableArea(tableSchema)
 
 		table.forEach((row) => {
 			this.activeRow = row
-			incomes.push({
-				count: this.getNumber(tableSchema, "count"),
-				dateIn: this.getDate(tableSchema, "dates", "in"),
-				dateOut: this.getDate(tableSchema, "dates", "out"),
-				isin: this.getString(tableSchema, "isin"),
-				name: this.getString(tableSchema, "name"),
-				timeTest: this.getBoolean(tableSchema, "timeTest"),
-				unitBuy: this.getNumber(tableSchema, "unitBuy"),
-				unitSell: this.getNumber(tableSchema, "unitSell"),
-				expense: this.getNumber(tableSchema, "expense"),
+			dividends.push({
+				isin: this.getString(tableSchema, "isin")!,
+				name: this.getString(tableSchema, "name")!,
 				id: this.getNumber(tableSchema, "id"),
-				income: this.getNumber(tableSchema, "income"),
-				profit: this.getNumber(tableSchema, "profit"),
+				creditedTax: this.getNumber(tableSchema, "creditedTax"),
+				czWithholdingTax: this.getNumber(
+					tableSchema,
+					"czWithholdingTax"
+				),
+				czWithholdingTaxValue: this.getNumber(
+					tableSchema,
+					"czWithholdingTaxValue"
+				),
+				date: this.getDate(tableSchema, "date"),
+				gross: this.getNumber(tableSchema, "gross")!,
+				grossCzk: this.getNumber(tableSchema, "grossCzk"),
+				rate: this.getNumber(tableSchema, "rate"),
+				sourceWithholdingTax: this.getNumber(
+					tableSchema,
+					"sourceWithholdingTax"
+				),
+				sourceWithholdingTaxValue: this.getNumber(
+					tableSchema,
+					"sourceWithholdingTaxValue"
+				),
 			})
 		})
 
-		return incomes
+		return dividends
 	}
 
 	private selectTableArea(tableSchema: {
@@ -280,7 +293,9 @@ export class ReportBuilder {
 		schema: T,
 		column: keyof T["columns"]
 	) {
-		const v = this.activeRow![schema.columns[column as any].column]
+		const columnDef = schema.columns[column as any]
+		if (columnDef == undefined) return null
+		const v = this.activeRow![columnDef.column]
 		return Number(
 			v.replace(",", ".").replaceAll(" ", "").replaceAll(" ", "")
 		)
@@ -290,14 +305,18 @@ export class ReportBuilder {
 		schema: T,
 		column: keyof T["columns"]
 	) {
-		return this.activeRow![schema.columns[column as any].column] == "Ano"
+		const columnDef = schema.columns[column as any]
+		if (columnDef == undefined) return null
+		return this.activeRow![columnDef.column] == "Ano"
 	}
 
 	private getString<T extends TableSchemaWithColumns>(
 		schema: T,
 		column: keyof T["columns"]
 	) {
-		return String(this.activeRow![schema.columns[column as any].column])
+		const columnDef = schema.columns[column as any]
+		if (columnDef == undefined) return null
+		return String(this.activeRow![columnDef.column])
 	}
 
 	private getDate<T extends TableSchemaWithColumns>(
@@ -313,8 +332,10 @@ export class ReportBuilder {
 		schema: T,
 		column: keyof T["columns"],
 		date?: "in" | "out"
-	): Date {
-		const dates = this.activeRow![schema.columns[column as any].column]
+	): Date | null {
+		const columnDef = schema.columns[column as any]
+		if (columnDef == undefined) return null
+		const dates = this.activeRow![columnDef.column]
 
 		if (date == undefined) return new Date(dates.trim())
 
@@ -322,7 +343,7 @@ export class ReportBuilder {
 
 		if (splitted.length != 2)
 			throw Error(
-				`Error in Report builder. Invalid data in dates column (${this.activeRow![schema.columns.dates.column]}). Format DATE_IN / DATE_OUT is expected.`
+				`Error in Report builder. Invalid data in dates column (${this.activeRow![schema.columns.dates!.column]}). Format DATE_IN / DATE_OUT is expected.`
 			)
 
 		return new Date(splitted[date == "in" ? 0 : 1].trim())
@@ -332,7 +353,7 @@ export class ReportBuilder {
 const DEFAULT_SHEET = "sheet1"
 
 type TableSchemaWithColumns = {
-	columns: Record<string, { column: string; header: string }>
+	columns: Record<string, { column: string; header: string } | undefined>
 }
 
 export type Report = {
@@ -345,7 +366,7 @@ export type Report = {
 	income: Income[] | null
 	currencyHedging: CurrencyHedging[] | null
 	fees: Fee[] | null
-	dividendsUsd?: Dividend[] | null
+	dividendsUsd: Dividend[] | null
 }
 
 type IncomeForegin = {
@@ -419,7 +440,7 @@ type Dividend = {
 	grossCzk: number | null
 	sourceWithholdingTax: number | null
 	czWithholdingTax: number | null
-	sourceWithholdingTaxvalue: number | null
+	sourceWithholdingTaxValue: number | null
 	czWithholdingTaxValue: number | null
 	creditedTax: number | null
 }
