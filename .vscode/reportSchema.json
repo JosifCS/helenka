@@ -182,7 +182,6 @@
 						}
 					},
 					"required": [
-						"id",
 						"dates",
 						"isin",
 						"name",
@@ -253,7 +252,15 @@
 							"$ref": "#/definitions/Column"
 						}
 					},
-					"required": [],
+					"required": [
+						"dateIn",
+						"dateOut",
+						"isin",
+						"name",
+						"count",
+						"unitBuy",
+						"unitSell"
+					],
 					"additionalProperties": false
 				}
 			},
@@ -541,6 +548,6 @@
 			}
 		}
 	],
-	"required": ["broker", "version", "dividendsUsd"],
+	"required": ["broker", "version"],
 	"additionalProperties": false
 }
