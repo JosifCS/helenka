@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useAction } from "next-safe-action/hooks"
 import { cn } from "@/lib/utils"
+import { toast } from "@/hooks/use-toast"
 
 type FormWrapper = {
 	action: any
@@ -35,9 +36,16 @@ export function Form({ action, children, className }: FormWrapper) {
 
 			if (data.message) {
 				if (data.success) {
-					// TODO toast.success(data.message)
+					toast({
+						title: "Success",
+						description: data.message,
+					})
 				} else {
-					// TODO toast.error(data.message)
+					toast({
+						variant: "error",
+						title: "Error",
+						description: data.message,
+					})
 				}
 			}
 
@@ -47,9 +55,17 @@ export function Form({ action, children, className }: FormWrapper) {
 				router.back()
 			}
 		} else if (typeof result.serverError === "string") {
-			// TODO toast.error(result.serverError)
+			toast({
+				variant: "error",
+				title: "Server error",
+				description: result.serverError,
+			})
 		} else if (result.validationErrors) {
-			// TODO toast.warning("Invalid form")
+			toast({
+				variant: "error",
+				title: "Validation error",
+				description: "Invalid form",
+			})
 		}
 	}, [result])
 

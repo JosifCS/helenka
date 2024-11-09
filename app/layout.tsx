@@ -3,6 +3,7 @@ import localFont from "next/font/local"
 import "./globals.css"
 import { getLocale } from "next-intl/server"
 import { ReactNode } from "react"
+import { ClientProviders } from "@/components/client-providers"
 
 // inicializace konstant
 String.Empty = ""
@@ -40,6 +41,7 @@ export default async function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
 				{children}
+				<ClientProviders />
 			</body>
 		</html>
 	)

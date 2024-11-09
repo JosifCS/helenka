@@ -14,7 +14,6 @@ const schema = zfd.formData({
 
 export const importReport = authActionClient
 	.schema(schema)
-	//.metadata({})
 	.action(async function ({ parsedInput: { report } }) {
 		// TODO univerzální import výkazů
 
