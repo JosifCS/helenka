@@ -7,7 +7,6 @@ import fs from "fs"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Artwork } from "@/components/artwork"
 import { Report } from "@/modules/report-builder"
-import { unknown } from "zod"
 
 export default async function Page() {
 	const t = await getTranslations("Reports")

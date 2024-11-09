@@ -19,11 +19,6 @@ export const actionClient = createSafeActionClient({
 
 		return DEFAULT_SERVER_ERROR_MESSAGE
 	},
-	/*defineMetadataSchema() {
-		return z.object({
-			something: z.string().optional(),
-		})
-	},*/
 })
 
 export const authActionClient = actionClient.use(
