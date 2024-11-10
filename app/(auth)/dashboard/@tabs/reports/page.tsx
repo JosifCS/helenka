@@ -48,7 +48,7 @@ export default async function Page() {
 											description={
 												report.description ?? ""
 											}
-											href="/"
+											href="/report"
 											label={report.broker}
 											src="/portu.png"
 											className="w-[250px]"
