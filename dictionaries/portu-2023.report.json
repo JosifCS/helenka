@@ -5,10 +5,6 @@
 	"incomesUsd": {
 		"name": "Příjmy v USD",
 		"columns": {
-			"id": {
-				"column": "A",
-				"header": "#"
-			},
 			"dates": {
 				"column": "B",
 				"header": "Datum prodeje/nákupu"
@@ -33,7 +29,7 @@
 				"column": "G",
 				"header": "Nákupní cena* (v USD)"
 			},
-			"unitSell": {
+			"unitSale": {
 				"column": "H",
 				"header": "Prodejní cena (v USD)"
 			},
@@ -66,10 +62,6 @@
 	"incomesEur": {
 		"name": "Příjmy v EUR",
 		"columns": {
-			"id": {
-				"column": "A",
-				"header": "#"
-			},
 			"dates": {
 				"column": "B",
 				"header": "Datum prodeje/nákupu"
@@ -94,7 +86,7 @@
 				"column": "G",
 				"header": "Nákupní cena* (v EUR)"
 			},
-			"unitSell": {
+			"unitSale": {
 				"column": "H",
 				"header": "Prodejní cena (v EUR)"
 			},
@@ -127,10 +119,6 @@
 	"incomesCzk": {
 		"name": "Příjmy v CZK",
 		"columns": {
-			"id": {
-				"column": "A",
-				"header": "#"
-			},
 			"dates": {
 				"column": "B",
 				"header": "Datum prodeje/nákupu"
@@ -155,7 +143,7 @@
 				"column": "G",
 				"header": "Nákupní cena* (v CZK)"
 			},
-			"unitSell": {
+			"unitSale": {
 				"column": "H",
 				"header": "Prodejní cena (v CZK)"
 			},
@@ -180,10 +168,6 @@
 	"currencyHedging": {
 		"name": "b. Příjmy/výdaje na měnové zajištění",
 		"columns": {
-			"id": {
-				"column": "A",
-				"header": "#"
-			},
 			"name": {
 				"column": "B",
 				"header": "Instrument"
@@ -217,10 +201,6 @@
 	"fees": {
 		"name": " Naúčtované poplatky v CZK",
 		"columns": {
-			"id": {
-				"column": "A",
-				"header": "#"
-			},
 			"date": {
 				"column": "B",
 				"header": "Datum"
@@ -238,10 +218,6 @@
 	"dividendsUsd": {
 		"name": "Připsané dividendy v USD",
 		"columns": {
-			"id": {
-				"column": "A",
-				"header": "#"
-			},
 			"date": {
 				"column": "B",
 				"header": "Datum"

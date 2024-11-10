@@ -19,11 +19,6 @@
 					"type": "object",
 					"description": "Sloupce tabulky.",
 					"properties": {
-						"id": {
-							"type": "object",
-							"description": "ID řádku.",
-							"$ref": "#/definitions/Column"
-						},
 						"dates": {
 							"type": "object",
 							"description": "Datum nákupu a prodeje v jedné buňce ve formátu BUY_DATE / SELL_DATE.",
@@ -54,7 +49,7 @@
 							"description": "Jednotková nákupní cena.",
 							"$ref": "#/definitions/Column"
 						},
-						"unitSell": {
+						"unitSale": {
 							"type": "object",
 							"description": "Jednotková prodejní cena.",
 							"$ref": "#/definitions/Column"
@@ -90,15 +85,7 @@
 							"$ref": "#/definitions/Column"
 						}
 					},
-					"required": [
-						"dates",
-						"isin",
-						"name",
-						"count",
-						"unitBuy",
-						"unitSell",
-						"timeTest"
-					],
+					"required": ["dates", "isin", "name", "count"],
 					"additionalProperties": false
 				}
 			},
@@ -120,11 +107,6 @@
 					"type": "object",
 					"description": "Sloupce tabulky.",
 					"properties": {
-						"id": {
-							"type": "object",
-							"description": "ID řádku.",
-							"$ref": "#/definitions/Column"
-						},
 						"dates": {
 							"type": "object",
 							"description": "Datum nákupu a prodeje v jedné buňce ve formátu BUY_DATE / SELL_DATE.",
@@ -155,7 +137,7 @@
 							"description": "Jednotková nákupní cena.",
 							"$ref": "#/definitions/Column"
 						},
-						"unitSell": {
+						"unitSale": {
 							"type": "object",
 							"description": "Jednotková prodejní cena.",
 							"$ref": "#/definitions/Column"
@@ -181,86 +163,7 @@
 							"$ref": "#/definitions/Column"
 						}
 					},
-					"required": [
-						"dates",
-						"isin",
-						"name",
-						"count",
-						"unitBuy",
-						"unitSell",
-						"timeTest"
-					],
-					"additionalProperties": false
-				}
-			},
-			"required": ["columns"],
-			"additionalProperties": false
-		},
-		"Income": {
-			"type": "object",
-			"properties": {
-				"name": {
-					"type": "string",
-					"description": "Název tabulky. Je nutný, pokud není tabulka na samostatném listu. Čeká se, že na řádku pod názvem tabulky bude záhlaví tabulky."
-				},
-				"sheet": {
-					"type": "string",
-					"description": "Název listu, na kterém se tabulka nachází. Výchozí hodnta je sheet1."
-				},
-				"columns": {
-					"type": "object",
-					"description": "Sloupce tabulky.",
-					"properties": {
-						"id": {
-							"type": "object",
-							"description": "ID řádku.",
-							"$ref": "#/definitions/Column"
-						},
-						"dateIn": {
-							"type": "object",
-							"description": "Datum nákupu.",
-							"$ref": "#/definitions/Column"
-						},
-						"dateOut": {
-							"type": "object",
-							"description": "Datum prodeje.",
-							"$ref": "#/definitions/Column"
-						},
-						"isin": {
-							"type": "object",
-							"description": "ISIN obchodu.",
-							"$ref": "#/definitions/Column"
-						},
-						"name": {
-							"type": "object",
-							"description": "Název instrumentu.",
-							"$ref": "#/definitions/Column"
-						},
-						"count": {
-							"type": "object",
-							"description": "Počet obchdovaných jednotek.",
-							"$ref": "#/definitions/Column"
-						},
-						"unitBuy": {
-							"type": "object",
-							"description": "Jednotková nákupní cena v USD.",
-							"$ref": "#/definitions/Column"
-						},
-						"unitSell": {
-							"type": "object",
-							"description": "Jednotková prodejní cena v USD.",
-							"$ref": "#/definitions/Column"
-						}
-					},
-					"required": [
-						"dateIn",
-						"dateOut",
-						"isin",
-						"name",
-						"count",
-						"unitBuy",
-						"unitSell"
-					],
+					"required": ["dates", "isin", "name", "count"],
 					"additionalProperties": false
 				}
 			},
@@ -282,11 +185,6 @@
 					"type": "object",
 					"description": "Sloupce tabulky.",
 					"properties": {
-						"id": {
-							"type": "object",
-							"description": "ID řádku.",
-							"$ref": "#/definitions/Column"
-						},
 						"name": {
 							"type": "object",
 							"description": "Název instrumentu.",
@@ -353,11 +251,6 @@
 					"type": "object",
 					"description": "Sloupce tabulky.",
 					"properties": {
-						"id": {
-							"type": "object",
-							"description": "ID řádku.",
-							"$ref": "#/definitions/Column"
-						},
 						"date": {
 							"type": "object",
 							"description": "Datum zaplacení.",
@@ -396,11 +289,6 @@
 					"type": "object",
 					"description": "Sloupce tabulky.",
 					"properties": {
-						"id": {
-							"type": "object",
-							"description": "ID řádku.",
-							"$ref": "#/definitions/Column"
-						},
 						"date": {
 							"type": "object",
 							"description": "Datum připsání.",
@@ -508,11 +396,6 @@
 			"type": "object",
 			"description": "Tabulka s příjmy v Korunách. Nemůže být definováno zároveň s tabulkou všech příjmů.",
 			"$ref": "#/definitions/CzkIncome"
-		},
-		"incomes": {
-			"type": "object",
-			"description": "Tabulka se všemy příjmy. Nemůže být definováno tároveň s tabulkami příjmu rozdělených podle měny",
-			"$ref": "#/definitions/Income"
 		},
 		"currencyHedging": {
 			"type": "object",

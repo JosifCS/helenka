@@ -6,50 +6,36 @@ const columnSchema = z.object({
 })
 
 const foreginIncomeColumnsSchema = z.object({
-	id: columnSchema.optional(),
 	dates: columnSchema,
 	dateIn: columnSchema.optional(),
 	isin: columnSchema,
 	name: columnSchema,
 	count: columnSchema,
 	unitBuy: columnSchema,
-	unitSell: columnSchema,
+	unitSale: columnSchema,
 	buyRate: columnSchema.optional(),
 	sellRate: columnSchema.optional(),
 	expenseCzk: columnSchema.optional(),
 	incomeCzk: columnSchema.optional(),
 	profitCzk: columnSchema.optional(),
-	timeTest: columnSchema,
+	timeTest: columnSchema.optional(),
 })
 
 const czkIncomeColumnsSchema = z.object({
-	id: columnSchema.optional(),
 	dates: columnSchema,
 	dateIn: columnSchema.optional(),
 	isin: columnSchema,
 	name: columnSchema,
 	count: columnSchema,
-	unitBuy: columnSchema,
-	unitSell: columnSchema,
+	unitBuy: columnSchema.optional(),
+	unitSale: columnSchema.optional(),
 	expense: columnSchema.optional(),
 	income: columnSchema.optional(),
 	profit: columnSchema.optional(),
-	timeTest: columnSchema,
-})
-
-const incomeColumnsSchema = z.object({
-	id: columnSchema.optional(),
-	dateIn: columnSchema,
-	dateOut: columnSchema,
-	isin: columnSchema,
-	name: columnSchema,
-	count: columnSchema,
-	unitBuy: columnSchema,
-	unitSell: columnSchema,
+	timeTest: columnSchema.optional(),
 })
 
 const currencyHedgingColumnsSchema = z.object({
-	id: columnSchema.optional(),
 	name: columnSchema,
 	position: columnSchema,
 	dateIn: columnSchema,
@@ -60,14 +46,12 @@ const currencyHedgingColumnsSchema = z.object({
 })
 
 const feesColumnsSchema = z.object({
-	id: columnSchema.optional(),
 	date: columnSchema,
 	name: columnSchema,
 	fee: columnSchema,
 })
 
 const dividendsColumnsSchema = z.object({
-	id: columnSchema.optional(),
 	date: columnSchema,
 	isin: columnSchema,
 	name: columnSchema,
@@ -104,13 +88,6 @@ export const reportSchema = z.object({
 			name: z.string().optional(),
 			sheet: z.string().optional(),
 			columns: czkIncomeColumnsSchema,
-		})
-		.optional(),
-	incomes: z
-		.object({
-			name: z.string().optional(),
-			sheet: z.string().optional(),
-			columns: incomeColumnsSchema,
 		})
 		.optional(),
 	currencyHedging: z

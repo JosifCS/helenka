@@ -31,10 +31,11 @@ export class ReportBuilder {
 			to,
 			version: b.schema.version,
 			description: b.schema.description ?? null,
-			incomeUsd: b.parseIncomeForegin(b.schema.incomesUsd),
-			incomeEur: b.parseIncomeForegin(b.schema.incomesEur),
+			incomeForegin: b.parseIncomeForegin(
+				b.schema.incomesUsd,
+				b.schema.incomesEur
+			),
 			incomeCzk: b.parseIncomeCzk(),
-			income: b.parseIncome(),
 			currencyHedging: b.parseCurrencyHedging(),
 			fees,
 			dividendsUsd: b.parseDividends(b.schema.dividendsUsd),
@@ -76,9 +77,25 @@ export class ReportBuilder {
 	}
 
 	private parseIncomeForegin(
-		tableSchema: ReportSchema["incomesUsd"]
+		incomesUsd: ReportSchema["incomesUsd"] | undefined,
+		incomesEur: ReportSchema["incomesEur"] | undefined
 	): IncomeForegin[] | null {
-		if (tableSchema == undefined) return null
+		if (incomesEur == undefined || incomesUsd == undefined) return null
+
+		const usd = this.parseIncomeForegin2(incomesUsd, "usd")
+		const eur = this.parseIncomeForegin2(incomesEur, "eur")
+		const incomes = [...usd, ...eur].sort(
+			(a, b) => a.dateOut.getTime() - b.dateOut.getTime()
+		)
+
+		return incomes
+	}
+
+	private parseIncomeForegin2(
+		tableSchema: ReportSchema["incomesUsd"] | undefined,
+		currency: "eur" | "usd"
+	): IncomeForegin[] {
+		if (tableSchema == undefined) return []
 
 		const incomes: IncomeForegin[] = []
 
@@ -86,21 +103,40 @@ export class ReportBuilder {
 
 		table.forEach((row) => {
 			this.activeRow = row
+			const unitBuy = this.getNumber(tableSchema, "unitBuy"),
+				unitSale = this.getNumber(tableSchema, "unitSale"),
+				count = this.getNumber(tableSchema, "count")!
+
+			let expense = 0,
+				income = 0
+			if (unitBuy != null && unitSale != null) {
+				expense = unitBuy * count
+				income = unitSale * count
+			} else {
+				throw new Error(
+					"Error in Report builder. The schema does not contain data for income and expense from sales."
+				)
+			}
+
 			incomes.push({
-				count: this.getNumber(tableSchema, "count")!,
+				count,
+				currency,
 				dateIn: this.getDate(tableSchema, "dates", "in"),
 				dateOut: this.getDate(tableSchema, "dates", "out"),
 				isin: this.getString(tableSchema, "isin")!,
 				name: this.getString(tableSchema, "name")!,
 				timeTest: this.getBoolean(tableSchema, "timeTest")!,
-				unitBuy: this.getNumber(tableSchema, "unitBuy")!,
-				unitSell: this.getNumber(tableSchema, "unitSell")!,
-				buyRate: this.getNumber(tableSchema, "buyRate"),
-				expenseCzk: this.getNumber(tableSchema, "expenseCzk"),
-				id: this.getNumber(tableSchema, "id"),
-				incomeCzk: this.getNumber(tableSchema, "incomeCzk"),
-				profitCzk: this.getNumber(tableSchema, "profitCzk"),
-				sellRate: this.getNumber(tableSchema, "sellRate"),
+				expense,
+				income,
+				check: {
+					buyRate: this.getNumber(tableSchema, "buyRate"),
+					expenseCzk: this.getNumber(tableSchema, "expenseCzk"),
+					incomeCzk: this.getNumber(tableSchema, "incomeCzk"),
+					profitCzk: this.getNumber(tableSchema, "profitCzk"),
+					sellRate: this.getNumber(tableSchema, "sellRate"),
+					unitBuy,
+					unitSale,
+				},
 			})
 		})
 
@@ -125,36 +161,10 @@ export class ReportBuilder {
 				name: this.getString(tableSchema, "name")!,
 				timeTest: this.getBoolean(tableSchema, "timeTest")!,
 				unitBuy: this.getNumber(tableSchema, "unitBuy")!,
-				unitSell: this.getNumber(tableSchema, "unitSell")!,
+				unitSell: this.getNumber(tableSchema, "unitSale")!,
 				expense: this.getNumber(tableSchema, "expense"),
-				id: this.getNumber(tableSchema, "id"),
 				income: this.getNumber(tableSchema, "income"),
 				profit: this.getNumber(tableSchema, "profit"),
-			})
-		})
-
-		return incomes
-	}
-
-	private parseIncome(): Income[] | null {
-		const tableSchema = this.schema.incomes
-		if (tableSchema == undefined) return null
-
-		const incomes: Income[] = []
-
-		const table = this.selectTableArea(tableSchema)
-
-		table.forEach((row) => {
-			this.activeRow = row
-			incomes.push({
-				count: this.getNumber(tableSchema, "count")!,
-				dateIn: this.getDate(tableSchema, "dateIn"),
-				dateOut: this.getDate(tableSchema, "dateOut"),
-				isin: this.getString(tableSchema, "isin")!,
-				name: this.getString(tableSchema, "name")!,
-				unitBuy: this.getNumber(tableSchema, "unitBuy")!,
-				unitSell: this.getNumber(tableSchema, "unitSell")!,
-				id: this.getNumber(tableSchema, "id"),
 			})
 		})
 
@@ -175,7 +185,6 @@ export class ReportBuilder {
 				dateIn: this.getDate(tableSchema, "dateIn"),
 				dateOut: this.getDate(tableSchema, "dateOut"),
 				name: this.getString(tableSchema, "name")!,
-				id: this.getNumber(tableSchema, "id"),
 				profit: this.getNumber(tableSchema, "profit")!,
 				buyRate: this.getNumber(tableSchema, "buyRate")!,
 				position: this.getString(tableSchema, "position")!,
@@ -198,7 +207,6 @@ export class ReportBuilder {
 			this.activeRow = row
 			fees.push({
 				name: this.getString(tableSchema, "name")!,
-				id: this.getNumber(tableSchema, "id"),
 				date: this.getDate(tableSchema, "date")!,
 				fee: this.getNumber(tableSchema, "fee")!,
 			})
@@ -221,7 +229,6 @@ export class ReportBuilder {
 			dividends.push({
 				isin: this.getString(tableSchema, "isin")!,
 				name: this.getString(tableSchema, "name")!,
-				id: this.getNumber(tableSchema, "id"),
 				creditedTax: this.getNumber(tableSchema, "creditedTax"),
 				czWithholdingTax: this.getNumber(
 					tableSchema,
@@ -386,34 +393,43 @@ export type Report = {
 	from: Date
 	to: Date
 	description: string | null
-	incomeUsd: IncomeForegin[] | null
-	incomeEur: IncomeForegin[] | null
+	incomeForegin: IncomeForegin[] | null
 	incomeCzk: IncomeCzk[] | null
-	income: Income[] | null
 	currencyHedging: CurrencyHedging[] | null
 	fees: Fee[] | null
 	dividendsUsd: Dividend[] | null
 }
 
 type IncomeForegin = {
-	id: number | null
+	currency: "usd" | "eur"
 	dateIn: Date
 	dateOut: Date
 	isin: string
 	name: string
 	count: number
-	unitBuy: number
-	unitSell: number
-	buyRate: number | null
-	sellRate: number | null
-	expenseCzk: number | null
-	incomeCzk: number | null
-	profitCzk: number | null
-	timeTest: boolean
+	expense: number
+	income: number
+	timeTest: boolean | null
+	/** Control data that can be used to check the calculation. */
+	check: {
+		/** Daily exchange rate (Portu). */
+		buyRate: number | null
+		/** Daily exchange rate (Portu). */
+		sellRate: number | null
+		/** Expense in CZK at the daily exchange rate (Portu). */
+		expenseCzk: number | null
+		/** Income in CZK at the daily exchange rate (Portu). */
+		incomeCzk: number | null
+		/** Profit in CZK at the daily exchange rate (Portu). */
+		profitCzk: number | null
+		/** Unit price of purchase. */
+		unitBuy: number | null
+		/** Unit price sale. */
+		unitSale: number | null
+	}
 }
 
 type IncomeCzk = {
-	id: number | null
 	dateIn: Date
 	dateOut: Date
 	isin: string
@@ -427,19 +443,7 @@ type IncomeCzk = {
 	timeTest: boolean
 }
 
-type Income = {
-	id: number | null
-	dateIn: Date
-	dateOut: Date
-	isin: string
-	name: string
-	count: number
-	unitBuy: number
-	unitSell: number
-}
-
 type CurrencyHedging = {
-	id: number | null
 	name: string
 	position: string
 	dateIn: Date
@@ -450,14 +454,12 @@ type CurrencyHedging = {
 }
 
 type Fee = {
-	id: number | null
 	date: Date
 	name: string
 	fee: number
 }
 
 type Dividend = {
-	id: number | null
 	date: Date
 	isin: string
 	name: string
