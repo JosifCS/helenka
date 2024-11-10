@@ -8,6 +8,10 @@
 			"about": "About",
 			"file": "File",
 			"help": "Help"
+		},
+		"IncomesTable": {
+			"currency": "Currency",
+			"vroker": "Stock trader"
 		}
 	},
 	"Assemblies": {

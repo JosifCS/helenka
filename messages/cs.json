@@ -8,6 +8,19 @@
 			"about": "O stránce",
 			"file": "Soubor",
 			"help": "Nápověda"
+		},
+		"IncomesTable": {
+			"currency": "Měna",
+			"salePrice": "Cena prodeje",
+			"incomeCzk": "Přijmy v Kč jednotným kurzem",
+			"name": "Název cenného papíru (podílového fondu, akcie nebo ETF)",
+			"expenseCzk": "Výdaje v Kč jednotným kurzem",
+			"price": "Cena + poplatek nákupu",
+			"dateIn": "Datum nákupu",
+			"count": "Počet",
+			"vroker": "Obchodník s CP",
+			"dateOut": "Datum prodeje",
+			"saleFee": "Poplatek prodeje"
 		}
 	},
 	"Assemblies": {
