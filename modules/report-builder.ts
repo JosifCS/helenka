@@ -1,6 +1,7 @@
-import { NotImplementedError } from "@/types/error"
 import { ExcelData } from "./csv-json"
 import { ReportSchema, reportSchema } from "./report-schema"
+import { parseDate } from "./date-utils"
+import { ArgumentNullError, FormatError, NotImplementedError } from "./error"
 
 export class ReportBuilder {
 	private excel: ExcelData
@@ -51,8 +52,16 @@ export class ReportBuilder {
 		switch (broker) {
 			case "portu":
 				return {
-					from: new Date(fees![0].date.getFullYear(), 0, 1),
-					to: new Date(fees![0].date.getFullYear() + 1, 0, 0),
+					from: new Date(
+						new Date(fees![0].date).getFullYear(),
+						0,
+						1
+					).getTime(),
+					to: new Date(
+						new Date(fees![0].date).getFullYear() + 1,
+						0,
+						0
+					).getTime(),
 				}
 			default:
 				throw new NotImplementedError(
@@ -84,9 +93,7 @@ export class ReportBuilder {
 
 		const usd = this.parseIncomeForegin2(incomesUsd, "usd")
 		const eur = this.parseIncomeForegin2(incomesEur, "eur")
-		const incomes = [...usd, ...eur].sort(
-			(a, b) => a.dateOut.getTime() - b.dateOut.getTime()
-		)
+		const incomes = [...usd, ...eur].sort((a, b) => a.dateOut - b.dateOut)
 
 		return incomes
 	}
@@ -349,25 +356,48 @@ export class ReportBuilder {
 		return String(this.activeRow![columnDef.column])
 	}
 
+	/**
+	 *
+	 * @param schema
+	 * @param column
+	 * @returns Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC or null.
+	 */
 	private getDate<T extends TableSchemaWithColumns>(
 		schema: T,
 		column: keyof T["columns"]
-	): Date
+	): number
+	/**
+	 *
+	 * @param schema
+	 * @param column
+	 * @param date
+	 * @returns Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC or throw Error.
+	 */
 	private getDate<T extends TableSchemaWithColumns>(
 		schema: T,
 		column: keyof T["columns"],
 		date: "in" | "out"
-	): Date
+	): number
 	private getDate<T extends TableSchemaWithColumns>(
 		schema: T,
 		column: keyof T["columns"],
 		date?: "in" | "out"
-	): Date | null {
+	): number {
 		const columnDef = schema.columns[column as any]
-		if (columnDef == undefined) return null
+		if (columnDef == undefined)
+			throw new ArgumentNullError(
+				`Error in Report builder. Undefined value in column ${String(column)}.`
+			)
 		const dates = this.activeRow![columnDef.column]
 
-		if (date == undefined) return new Date(dates.trim())
+		if (date == undefined) {
+			const parsed = parseDate(dates)
+			if (parsed == null)
+				throw new FormatError(
+					`Error in Report builder. Invalid value in column ${String(column)}. Format DATE is expected.`
+				)
+			return parsed
+		}
 
 		const splitted = dates.split("/")
 
@@ -376,7 +406,13 @@ export class ReportBuilder {
 				`Error in Report builder. Invalid data in dates column (${this.activeRow![schema.columns.dates!.column]}). Format DATE_IN / DATE_OUT is expected.`
 			)
 
-		return new Date(splitted[date == "in" ? 0 : 1].trim())
+		const parsed = parseDate(splitted[date == "in" ? 0 : 1])
+
+		if (parsed == null)
+			throw new FormatError(
+				`Error in Report builder. Invalid value in column ${String(column)}. Format DATE_IN / DATE_OUT is expected.`
+			)
+		return parsed
 	}
 }
 
@@ -390,8 +426,10 @@ export type Report = {
 	broker: "portu" | "xtb" | "etoro"
 	/** Označení verze formátu výpisu. Zpravidla se jedná o rok. */
 	version: number
-	from: Date
-	to: Date
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	from: number
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	to: number
 	description: string | null
 	incomeForegin: IncomeForegin[] | null
 	incomeCzk: IncomeCzk[] | null
@@ -402,8 +440,10 @@ export type Report = {
 
 type IncomeForegin = {
 	currency: "usd" | "eur"
-	dateIn: Date
-	dateOut: Date
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	dateIn: number
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	dateOut: number
 	isin: string
 	name: string
 	count: number
@@ -430,8 +470,10 @@ type IncomeForegin = {
 }
 
 type IncomeCzk = {
-	dateIn: Date
-	dateOut: Date
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	dateIn: number
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	dateOut: number
 	isin: string
 	name: string
 	count: number
@@ -446,21 +488,25 @@ type IncomeCzk = {
 type CurrencyHedging = {
 	name: string
 	position: string
-	dateIn: Date
-	dateOut: Date
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	dateIn: number
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	dateOut: number
 	buyRate: number
 	sellRate: number
 	profit: number
 }
 
 type Fee = {
-	date: Date
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	date: number
 	name: string
 	fee: number
 }
 
 type Dividend = {
-	date: Date
+	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
+	date: number
 	isin: string
 	name: string
 	gross: number

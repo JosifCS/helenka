@@ -5,11 +5,11 @@ const ETORO_FORMAT =
 /**
  * Parsing date and time. Using local time. Performs trimming.
  * @param value String value can be of the form *DD.MM.YYYY* or *DD/MM/YYYY HH:mm:ss*.
- * @returns Date or *null*.
+ * @returns Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC or *null*.
  */
 export function parseDate(value: Date | string | number) {
-	if (value instanceof Date) return value
-	if (typeof value === "number") return new Date(value)
+	if (value instanceof Date) return value.getTime()
+	if (typeof value === "number") return value
 
 	value = value.trim()
 
@@ -20,7 +20,7 @@ export function parseDate(value: Date | string | number) {
 			+match.groups.year,
 			+match.groups.month - 1,
 			+match.groups.date
-		)
+		).getTime()
 	}
 	if (ETORO_FORMAT.test(value)) {
 		const match = value.match(ETORO_FORMAT)
@@ -32,7 +32,7 @@ export function parseDate(value: Date | string | number) {
 			+match.groups.hours,
 			+match.groups.minutes,
 			+match.groups.seconds
-		)
+		).getTime()
 	}
 	return null
 }
