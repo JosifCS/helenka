@@ -2,13 +2,13 @@ import { Report } from "@/modules/report-builder"
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableCell,
 	TableHead,
 	TableHeader,
 	TableRow,
 } from "./ui/table"
 import { useFormatter, useTranslations } from "next-intl"
+import { money } from "@/modules/format-utils"
 
 type IncomesTable = {
 	incomes: Report["incomeForegin"]
@@ -16,7 +16,7 @@ type IncomesTable = {
 
 export function IncomesTable({ incomes }: IncomesTable) {
 	const t = useTranslations("Components.IncomesTable")
-	const { dateTime } = useFormatter()
+	const { dateTime, number } = useFormatter()
 
 	return (
 		<Table>
@@ -54,24 +54,27 @@ export function IncomesTable({ incomes }: IncomesTable) {
 							{dateTime(row.dateOut)}
 						</TableCell>
 						<TableCell className="text-right">
-							{row.income.toFixed(4)}
+							{money(number, row.income, row.currency, 4)}
 						</TableCell>
 						<TableCell className="font-medium text-right">
-							???
+							{money(number, row.incomeCzk, "CZK")}
 						</TableCell>
 						<TableCell className="w-[100%]">{row.name}</TableCell>
 						<TableCell className="font-medium text-right">
-							???
+							{money(number, row.expenseCzk, "CZK")}
 						</TableCell>
 						<TableCell className="text-right">
-							{row.expense.toFixed(4)}
+							{money(number, row.expense, row.currency, 4)}
 						</TableCell>
 						<TableCell className="text-right">???</TableCell>
 						<TableCell className="text-center">
 							{dateTime(row.dateIn)}
 						</TableCell>
 						<TableCell className="text-right">
-							{row.count.toFixed(4)}
+							{number(row.count, {
+								maximumFractionDigits: 4,
+								minimumFractionDigits: 4,
+							})}
 						</TableCell>
 					</TableRow>
 				))}
