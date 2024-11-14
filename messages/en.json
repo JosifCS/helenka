@@ -11,7 +11,16 @@
 		},
 		"IncomesTable": {
 			"currency": "Currency",
-			"vroker": "Stock trader"
+			"vroker": "Stock trader",
+			"count": "Number",
+			"dateIn": "Date of purchase",
+			"dateOut": "Date of sale",
+			"expenseCzk": "Expenses in CZK at a uniform exchange rate",
+			"incomeCzk": "Income in CZK at a uniform exchange rate",
+			"name": "Name of security (mutual fund, share or ETF)",
+			"price": "Price purchase fee",
+			"saleFee": "Sales charge",
+			"salePrice": "Selling price"
 		}
 	},
 	"Assemblies": {

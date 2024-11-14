@@ -19,7 +19,6 @@ export function IncomesTable({ incomes }: IncomesTable) {
 
 	return (
 		<Table>
-			<TableCaption>\t A list</TableCaption>
 			<TableHeader>
 				<TableRow>
 					<TableHead className="text-center">
