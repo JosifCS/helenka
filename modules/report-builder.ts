@@ -2,6 +2,7 @@ import { ExcelData } from "./csv-json"
 import { ReportSchema, reportSchema } from "./report-schema"
 import { parseDate } from "./date-utils"
 import { ArgumentNullError, FormatError, NotImplementedError } from "./error"
+import { CurrencyCode } from "@/types/global"
 
 export class ReportBuilder {
 	private excel: ExcelData
@@ -91,8 +92,8 @@ export class ReportBuilder {
 	): IncomeForegin[] | null {
 		if (incomesEur == undefined || incomesUsd == undefined) return null
 
-		const usd = this.parseIncomeForegin2(incomesUsd, "usd")
-		const eur = this.parseIncomeForegin2(incomesEur, "eur")
+		const usd = this.parseIncomeForegin2(incomesUsd, "USD")
+		const eur = this.parseIncomeForegin2(incomesEur, "EUR")
 		const incomes = [...usd, ...eur].sort((a, b) => a.dateOut - b.dateOut)
 
 		return incomes
@@ -100,7 +101,7 @@ export class ReportBuilder {
 
 	private parseIncomeForegin2(
 		tableSchema: ReportSchema["incomesUsd"] | undefined,
-		currency: "eur" | "usd"
+		currency: CurrencyCode
 	): IncomeForegin[] {
 		if (tableSchema == undefined) return []
 
@@ -125,6 +126,7 @@ export class ReportBuilder {
 				)
 			}
 
+			const RATE = 23 // TODO brát skutečný kurz měny
 			incomes.push({
 				count,
 				currency,
@@ -135,6 +137,8 @@ export class ReportBuilder {
 				timeTest: this.getBoolean(tableSchema, "timeTest")!,
 				expense,
 				income,
+				expenseCzk: expense * RATE,
+				incomeCzk: income * RATE,
 				check: {
 					buyRate: this.getNumber(tableSchema, "buyRate"),
 					expenseCzk: this.getNumber(tableSchema, "expenseCzk"),
@@ -439,7 +443,7 @@ export type Report = {
 }
 
 type IncomeForegin = {
-	currency: "usd" | "eur"
+	currency: CurrencyCode
 	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
 	dateIn: number
 	/** The stored time value in milliseconds since midnight, January 1, 1970 UTC. */
@@ -449,6 +453,10 @@ type IncomeForegin = {
 	count: number
 	expense: number
 	income: number
+	/** Value calculated at the annual rate. */
+	expenseCzk: number
+	/** Value calculated at the annual rate. */
+	incomeCzk: number
 	timeTest: boolean | null
 	/** Control data that can be used to check the calculation. */
 	check: {
