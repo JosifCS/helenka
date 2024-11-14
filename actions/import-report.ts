@@ -9,7 +9,7 @@ import path from "path"
 import fs from "fs"
 import { z } from "zod"
 import { ReportSchema } from "@/modules/report-schema"
-import { NotImplementedError } from "@/types/error"
+import { NotImplementedError } from "@/modules/error"
 
 const schema = zfd.formData({
 	report: zfd.file(),

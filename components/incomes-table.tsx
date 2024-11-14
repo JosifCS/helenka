@@ -8,7 +8,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "./ui/table"
-import { useTranslations } from "next-intl"
+import { useFormatter, useTranslations } from "next-intl"
 
 type IncomesTable = {
 	incomes: Report["incomeForegin"]
@@ -16,6 +16,7 @@ type IncomesTable = {
 
 export function IncomesTable({ incomes }: IncomesTable) {
 	const t = useTranslations("Components.IncomesTable")
+	const { dateTime } = useFormatter()
 
 	return (
 		<Table>
@@ -50,7 +51,7 @@ export function IncomesTable({ incomes }: IncomesTable) {
 							{row.currency}
 						</TableCell>
 						<TableCell className="text-center">
-							{row.dateOut?.toString()}
+							{dateTime(row.dateOut)}
 						</TableCell>
 						<TableCell className="text-right">
 							{row.income.toFixed(4)}
@@ -67,7 +68,7 @@ export function IncomesTable({ incomes }: IncomesTable) {
 						</TableCell>
 						<TableCell className="text-right">???</TableCell>
 						<TableCell className="text-center">
-							{row.dateIn?.toString()}
+							{dateTime(row.dateIn)}
 						</TableCell>
 						<TableCell className="text-right">
 							{row.count.toFixed(4)}
