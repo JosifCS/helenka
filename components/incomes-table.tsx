@@ -19,7 +19,7 @@ export function IncomesTable({ incomes }: IncomesTable) {
 	const { dateTime, number } = useFormatter()
 
 	return (
-		<Table>
+		<Table size={"xs"}>
 			<TableHeader>
 				<TableRow>
 					<TableHead className="text-center">
