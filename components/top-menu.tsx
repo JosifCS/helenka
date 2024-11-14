@@ -19,7 +19,7 @@ export function TopMenu() {
 	const locale = useLocale()
 	const t = useTranslations("Components.TopMenu")
 	return (
-		<Menubar className="rounded-none border-b px-2 lg:px-4 fixed top-0 left-0 right-0">
+		<Menubar className="rounded-none border-b px-2 lg:px-4 fixed top-0 left-0 right-0 z-10">
 			<MenubarMenu>
 				<MenubarTrigger className="font-bold" asChild>
 					<Link href={"/"}>Helenka</Link>
