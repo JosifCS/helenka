@@ -1,10 +1,8 @@
 import { CreateNewPlaceholder } from "@/components/create-new-placeholder"
 import { PageTitle } from "@/components/page-title"
 import { FileStack } from "lucide-react"
-import { getTranslations } from "next-intl/server"
 
 export default async function Page() {
-	const t = await getTranslations("Assemblies")
 	const assemblies = []
 	return (
 		<main>

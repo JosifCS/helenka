@@ -5,16 +5,14 @@ import { Report } from "@/modules/report-builder"
 import { IncomesTable } from "@/components/incomes-table"
 import { Card } from "@/components/card"
 import { Metadata } from "next"
-import { PageProps } from "@/types/global"
 
-type Props = PageProps<"id">
+//type Props = PageProps<"id">
 
-export async function generateMetadata(
-	{ params, searchParams }: Props
-	//parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
+//{ params }: Props
+//parent: ResolvingMetadata
 	// read route params
-	const id = (await params).id
+	//const id = (await params).id
 
 	// optionally access and extend (rather than replace) parent metadata
 	//const previousImages = (await parent).openGraph?.images || []
@@ -24,8 +22,8 @@ export async function generateMetadata(
 	}
 }
 
-export default async function Page({ params }: Props) {
-	const id = (await params).id
+export default async function Page(/*{ params }: Props*/) {
+	//const id = (await params).id
 	let report: Report | null = null
 
 	// TODO nahradit skutečným načítáním dat

@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useState } from "react"
+import { useId } from "react"
 import { useFormContext } from "./form"
 import { Label } from "./ui/label"
 import {
@@ -11,6 +11,7 @@ import {
 	SelectValue,
 } from "./ui/select"
 import { Translations } from "@/types/global"
+import { hasFieldErrors } from "./form-input"
 
 type FormSelectProps = {
 	label?: string
@@ -30,8 +31,7 @@ export function FormSelect({
 	translations: t,
 	...props
 }: FormSelectProps) {
-	const result = useFormContext() as { validationErrors: any }
-	//const [value, setValue] = useState<string | undefined>(defaultValue)
+	const result = useFormContext()
 	const id = useId()
 
 	return (
@@ -44,12 +44,13 @@ export function FormSelect({
 				<SelectContent>
 					{options.map((x) => (
 						<SelectItem key={x.value} value={x.value}>
-							{x.label ?? (t ? t(x.value) : x.value)}
+							{x.label ?? (t ? t(x.value as any) : x.value)}
 						</SelectItem>
 					))}
 				</SelectContent>
 			</Select>
 			{props.name &&
+				hasFieldErrors(result.validationErrors) &&
 				result.validationErrors?.fieldErrors?.[props.name] && (
 					<small className="text-red-700">
 						{result.validationErrors.fieldErrors[props.name][0]}

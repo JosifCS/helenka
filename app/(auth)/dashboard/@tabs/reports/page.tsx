@@ -1,7 +1,6 @@
 import { CreateNewPlaceholder } from "@/components/create-new-placeholder"
 import { PageTitle } from "@/components/page-title"
 import { FileText } from "lucide-react"
-import { getTranslations } from "next-intl/server"
 import path from "path"
 import fs from "fs"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
@@ -9,8 +8,6 @@ import { Artwork } from "@/components/artwork"
 import { Report } from "@/modules/report-builder"
 
 export default async function Page() {
-	const t = await getTranslations("Reports")
-
 	const reports: Report[] = []
 
 	// TODO nahradit skutečným načítáním dat
