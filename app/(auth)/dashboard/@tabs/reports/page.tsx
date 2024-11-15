@@ -15,7 +15,7 @@ export default async function Page() {
 	try {
 		const jsonData = fs.readFileSync(filePath, "utf-8")
 		reports.push(JSON.parse(jsonData))
-	} catch (e: unknown) {}
+	} catch {}
 
 	return (
 		<>

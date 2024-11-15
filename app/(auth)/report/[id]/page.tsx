@@ -9,8 +9,8 @@ import { Metadata } from "next"
 //type Props = PageProps<"id">
 
 export async function generateMetadata(): Promise<Metadata> {
-//{ params }: Props
-//parent: ResolvingMetadata
+	//{ params }: Props
+	//parent: ResolvingMetadata
 	// read route params
 	//const id = (await params).id
 
@@ -32,7 +32,7 @@ export default async function Page(/*{ params }: Props*/) {
 	try {
 		const jsonData = fs.readFileSync(filePath, "utf-8")
 		report = JSON.parse(jsonData) as Report
-	} catch (e: unknown) {}
+	} catch {}
 
 	if (report == null) return null
 
